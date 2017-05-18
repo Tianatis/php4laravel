@@ -1,9 +1,9 @@
-@layout('main')
+@extends('main')
 @section('title')
 	{{ $page_title }}
 @endsection
 
-@section('content')
+@section('page_content')
 	{{ $msg }}
 
 	@if (count($articles)> 0)
@@ -45,6 +45,8 @@
 			</article><!-- #post-## -->	
 		@endif
 		@endforeach
+	@else
+		<article class="post">Здесь будут статьи</article>
 	@endif
 @endsection
 
