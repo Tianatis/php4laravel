@@ -1,7 +1,10 @@
 @layout('main')
-@section('page_content')
+@section('title')
+	{{ $page_title }}
+@endsection
 
-{{ $msg; }}
+@section('content')
+	{{ $msg }}
 
 	@if (count($articles)> 0)
 		@foreach ($articles as $article)
@@ -12,12 +15,12 @@
 					@if ($article['private'])
 						<div class="private-img"></div>
 					@endif
-					<h1 class="entry-title"><a href="/articles/article/{{ $article['id']; }}" rel="bookmark">{{ $article['title']; }}</a></h1>
+					<h1 class="entry-title"><a href="/articles/article/{{ $article['id'] }}" rel="bookmark">{{ $article['title'] }}</a></h1>
 				</header>
 				<!-- .entry-header -->
 				
-					<div class="entry-content"><a href="/articles/article/{{ $article['id']; }}" class="intro">
-						<?=$article['intro'];?></a>
+					<div class="entry-content"><a href="/articles/article/{{ $article['id'] }}" class="intro">
+						{{ $article['intro'] }}</a>
 					</div>
 				
 				<!-- .entry-content -->
@@ -26,14 +29,14 @@
 					<div class="clear">
 						<div class="ingrid-social-share">
 							<div class="share-links">
-								{{ $article['name']; }} {{ date('d.m.Y',strtotime($article['post_date'])); }}
+								{{ $article['name'] }} {{ date('d.m.Y',strtotime($article['post_date'])) }}
 							</div>
 						</div>
 
 					<div class="comment-link">
 					@if($auth && $auth <= 2)
-						(<a href="/articles/edit/{{ $article['id']; }}">Редактировать</a>)&nbsp;
-						(<a href="/articles/delete/{{ $article['id']; }}">Удалить</a>)
+						(<a href="/articles/edit/{{ $article['id'] }}">Редактировать</a>)&nbsp;
+						(<a href="/articles/delete/{{ $article['id'] }}">Удалить</a>)
 					@endif
 					</div>
 				</div>

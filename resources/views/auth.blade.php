@@ -20,7 +20,7 @@
 		<div class="clear">
 			<div class="ingrid-social-share">
 				<div class="share-links">
-					{{ $mess_text; }}
+					{{ $mess_text }}
 				</div>
 			</div>
 		</div>

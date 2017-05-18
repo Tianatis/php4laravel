@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<link href="{{ URL::asset('css/style.css'); }}" rel="stylesheet" type="text/css">
-		<title>{{ $page_title; }}</title>
+		<title>@yield('title')</title>
 	</head>
 	<body>
 	<header>
@@ -39,7 +39,7 @@
 		<!-- #masthead -->
 
 		<main id="main" class="site-main" role="main">
-			@yield('page_content')
+			@yield('content')
 		</main> <!-- #main -->
 		<div id="back-top-div">
 	<p id="back-top">
