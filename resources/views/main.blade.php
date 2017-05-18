@@ -2,7 +2,7 @@
 <html lang="ru">
 	<head>
 		<meta charset="utf-8">
-		<link href="{{ URL::asset('css/style.css'); }}" rel="stylesheet" type="text/css">
+		<link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css">
 		<title>@yield('title')</title>
 	</head>
 	<body>
@@ -12,7 +12,7 @@
 			<ul class="menu nav-menu">
 			@if ($menu)
 				@foreach ($menu as $item)
-					<li><a href="{{ $item->href }}"></a>{{ $item->name }}</li>
+					<li><a href="{{ $item['href'] }}">{{ $item['name'] }}</a></li>
 				@endforeach
 			@endif
 			</ul>
@@ -24,7 +24,7 @@
 
 		<header id="masthead" class="site-header" role="banner">
 
-			<img src="{{ URL::asset('images/flowers-header.jpg'); }}" class="flowers">
+			<img src="{{ URL::asset('images/flowers-header.jpg') }}" class="flowers">
 
 			<div class="site-branding text-center">
 				
@@ -39,7 +39,7 @@
 		<!-- #masthead -->
 
 		<main id="main" class="site-main" role="main">
-			@yield('content')
+			@yield('page_content')
 		</main> <!-- #main -->
 		<div id="back-top-div">
 	<p id="back-top">
@@ -50,13 +50,13 @@
 
 <footer id="footer" class="site-footer" role="contentinfo">
 	<div id="website-copyright">
-		&copy; Tiana. All Rights Reserved. {{ date( 'Y' ); }}
+		&copy; Tiana. All Rights Reserved. {{ date( 'Y' ) }}
 	</div>
 </footer>
 
 <div class="attribution text-center">
 
-	<img src="{{ URL::asset('images/flower-footer.png'); }}" id="footer-flower">
+	<img src="{{ URL::asset('images/flower-footer.png') }}" id="footer-flower">
 
 </div>
 
