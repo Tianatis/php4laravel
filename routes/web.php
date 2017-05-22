@@ -16,33 +16,30 @@ Route::get('/', function () {
 });
 
 */
-
-Route::get('/', function () {
-    return view('index', ['msg' => false, 'articles' => [], 'auth' => 0, 'page_title' => 'Главная', 'menu' => App\Http\Controllers\MenuController::get_menu()
-    ]);
-})
+Route::get('/', 'ArticlesController@index')
     ->name('home');
+
 Route::get('/about', function () {
-    return view('about', ['title' => 'О бологе', 'menu' => App\Http\Controllers\MenuController::get_menu()] );
+    return view('public.about', ['title' => 'О бологе'] );
 });
 
 Route::get('/contacts', function () {
-    return view('contacts', ['title' => 'Контакты', 'menu' => App\Http\Controllers\MenuController::get_menu()]);
+    return view('public.contacts', ['title' => 'Контакты']);
 });
 
 Route::get('/login', function () {
-    return view('auth', ['title' => 'Авторизация', 'mess_text' => '', 'menu' => App\Http\Controllers\MenuController::get_menu()]);
+    return view('public.auth', ['title' => 'Авторизация', 'mess_text' => '']);
 });
 
 Route::post('/login', function () {
     return var_dump($_POST);
 });
 
-Route::group(['prefix' => 'articles', 'namespace' => 'Articles'], function () {
-    Route::get('/', 'ArticlesController@index')
-        ->name('home');
+Route::group(['prefix' => 'articles'], function () {
+    Route::get('/all', 'ArticlesController@all');
 
-    Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
-        Route::get('/', 'AdminApiController@index');
-    });
+    Route::get('/article/{id}', 'ArticlesController@article')
+        ->where([
+            'id' => '[0-9]+'
+        ]);
 });

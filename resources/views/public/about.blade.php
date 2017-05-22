@@ -1,4 +1,4 @@
-@extends('main')
+@extends('public.main')
 @section('title')
 	{{ $title }}
 @endsection
@@ -12,7 +12,7 @@
 		<!-- .entry-header -->
 
 		<div class="entry-content">
-			<p>Где-то на просторах инета</p>
+			<p>Этот блог создан в рамках курса PHP Strong</p>
 		</div>
 		<!-- .entry-content -->
 
