@@ -6,6 +6,6 @@ class AuthModel
 {
     public function isAuth()
     {
-        return false;
+        return true;
     }
 }

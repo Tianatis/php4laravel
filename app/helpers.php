@@ -12,8 +12,8 @@ function CleanText($text)
     return $cleantext;
 }
 
-public function show_msg($message, $type = 'str'){
-
+public function showMsg($message, $type = 'str')
+{
     if($message['mess_code'] != ''){
         $ms = $this->CleanText($message['mess_code']);
         switch($ms)

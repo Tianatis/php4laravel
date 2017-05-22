@@ -26,7 +26,8 @@ class ArticlesController
                                     'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pretium ut ipsum eu tincidunt.'
                         ]
                     ];
-    public function index(){
+    public function index()
+    {
 
        return $this->all();
     }
@@ -37,12 +38,11 @@ class ArticlesController
         return view('public.articles.index', ['msg' => false, 'articles' => $this->articles, 'page_title' => 'Главная']);
     }
 
-    public function article($id = false){
-
+    public function article($id = false)
+    {
         $page_title = 'Статья';
         $msg = false;
         $isAuth = resolve('AuthModel')->isAuth();
-
 
         if(!$id){
            $msg = 'Такой статьи не существует!';
@@ -50,15 +50,12 @@ class ArticlesController
         }else{
             $article = $this->articles[$id];
         }
-        if($article){
-            if(!$article['private'] || ($article['private'] && $isAuth)){
-                $page_title = $page_title. ': '. $article['title'];
-            }else{
-                $page_title = '';
-                $article = [];
-            }
+
+        if(isset($article) && (!$article['private'] || ($article['private'] && $isAuth))){
+            $page_title = $page_title. ': '. $article['title'];
         }else{
             $page_title = $page_title. ' не найдена';
+            $article = [];
         }
 
         return view('public.articles.article', ['msg' => $msg, 'article' => $article, 'title' => $page_title]);

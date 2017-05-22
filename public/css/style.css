@@ -177,7 +177,7 @@ height: 100px;
 
 }
 .item-img{
-	background: url("images/messages-icon.png") no-repeat center;
+	background: url("/images/messages-icon.png") no-repeat center;
         content: "";
         display: block;
         width: 30px;
@@ -187,7 +187,7 @@ height: 100px;
         
 }
 .private-img{
-	background: url("images/private.png") no-repeat center;
+	background: url("/images/private.png") no-repeat center;
         content: "";
         display: block;
         width: 30px;
@@ -204,7 +204,7 @@ height: 100px;
     border-radius: 10px;
 }
 .resp-img{
-	background: url("images/respond.png") no-repeat center;
+	background: url("/images/respond.png") no-repeat center;
         content: "";
         display: block;
         width: 50px;
@@ -677,7 +677,7 @@ section.error-404,
       article.page .entry-footer:after,
       section.error-404 .entry-footer:after,
       .box .entry-footer:after {
-        background: url("images/flower-post.png") no-repeat center;
+        background: url("/images/flower-post.png") no-repeat center;
         content: "";
         display: block;
         width: 119px;
