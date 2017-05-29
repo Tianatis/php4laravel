@@ -12,7 +12,7 @@
 		<!-- .entry-header -->
 
 		<div class="entry-content">
-			<p>Где-то на просторах инета</p>
+			{!! $content !!}
 		</div>
 		<!-- .entry-content -->
 

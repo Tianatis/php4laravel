@@ -2,9 +2,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ArticlesController
+class ArticlesController extends Controller
 {
+
     private $articles = [
                             1 => [
                                     'private' => 0,
@@ -14,9 +16,9 @@ class ArticlesController
                                     'name' => 'Admin',
                                     'post_date' => '2017-02-08 14:43:27',
                                     'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pretium ut ipsum eu tincidunt.'
-                                 ],
+                            ],
 
-                        2 => [
+                            2 => [
                                     'private' => 1,
                                     'id' => 2,
                                     'title' => 'Lorem ipsum 2',
@@ -24,40 +26,34 @@ class ArticlesController
                                     'name' => 'Admin',
                                     'post_date' => '2017-02-09 14:43:27',
                                     'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pretium ut ipsum eu tincidunt.'
-                        ]
-                    ];
+                            ]
+                        ];
     public function index()
     {
-
        return $this->all();
     }
 
     public function all()
     {
-        $isAuth = false;
-        return view('public.articles.index', ['msg' => false, 'articles' => $this->articles, 'page_title' => 'Главная']);
+        $menu = resolve('MenuModel')->showMenu(Auth::check());
+        return view('public.articles.index', ['articles' => $this->articles, 'menu' => $menu, 'page_title' => 'Главная']);
     }
 
-    public function article($id = false)
+    public function article($id)
     {
         $page_title = 'Статья';
-        $msg = false;
-        $isAuth = resolve('AuthModel')->isAuth();
+        $menu = resolve('MenuModel')->showMenu(Auth::check());
 
-        if(!$id){
-           $msg = 'Такой статьи не существует!';
-           $article = [];
-        }else{
-            $article = $this->articles[$id];
-        }
+        if(!isset($this->articles[$id]))
+            return redirect()->route('home')
+                ->with('articleError','Такой статьи не существует!');
 
-        if(isset($article) && (!$article['private'] || ($article['private'] && $isAuth))){
-            $page_title = $page_title. ': '. $article['title'];
-        }else{
-            $page_title = $page_title. ' не найдена';
-            $article = [];
-        }
+        $article = $this->articles[$id];
 
-        return view('public.articles.article', ['msg' => $msg, 'article' => $article, 'title' => $page_title]);
+        if ($article['private'] && !Auth::check())
+            return redirect()->route('login')
+                ->with('authError','Необходима авторизация!');
+
+        return view('public.articles.article', ['article' => $article, 'menu' => $menu, 'title' => $page_title. ': '. $article['title']]);
     }
 }

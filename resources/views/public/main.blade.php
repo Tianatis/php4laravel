@@ -37,7 +37,9 @@
 
 		</header>
 		<!-- #masthead -->
-
+		<div id="mess">
+			@include('public.parts.mess')
+		</div>
 		<main id="main" class="site-main" role="main">
 			@yield('page_content')
 		</main> <!-- #main -->

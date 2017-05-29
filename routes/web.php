@@ -18,22 +18,26 @@ Route::get('/', function () {
 */
 Route::get('/', 'ArticlesController@index')
     ->name('home');
+/* Статические страницы */
+Route::get('/about', 'PagesController@about');
 
-Route::get('/about', function () {
-    return view('public.about', ['title' => 'О бологе'] );
-});
+Route::get('/contacts', 'PagesController@contacts');
 
-Route::get('/contacts', function () {
-    return view('public.contacts', ['title' => 'Контакты']);
-});
+/* Аторизация */
+Route::get('/login', 'AuthController@login')
+    ->name('login');
+Route::post('/login', 'AuthController@loginPost')
+    ->name('loginPost');
 
-Route::get('/login', function () {
-    return view('public.auth', ['title' => 'Авторизация', 'mess_text' => '']);
-});
+Route::get('/register', 'AuthController@register')
+    ->name('register');
+Route::post('/register', 'AuthController@registerPost')
+    ->name('registerPost');
 
-Route::post('/login', function () {
-    return var_dump($_POST);
-});
+Route::get('/logout', 'AuthController@logout')
+    ->name('logout');
+
+/* Статьи */
 
 Route::group(['prefix' => 'articles'], function () {
     Route::get('/all', 'ArticlesController@all');
@@ -43,3 +47,5 @@ Route::group(['prefix' => 'articles'], function () {
             'id' => '[0-9]+'
         ]);
 });
+
+/* Добавление и редактирование статей через админку */

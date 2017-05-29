@@ -17,6 +17,7 @@ class MenuModel
                 'name' => 'Выход',
                 'active' => false
             ];
+            unset($menu['registration']);
         }
 
         return $menu;
@@ -49,7 +50,13 @@ class MenuModel
                 'href' => '/login',
                 'name' => 'Авторизация',
                 'active' => false
-            ]
+            ],
+            'registration' => [
+                'position' => 4,
+                'href' => '/register',
+                'name' => 'Регистрация',
+                'active' => false
+            ],
         ];
         return  $menu;
     }
