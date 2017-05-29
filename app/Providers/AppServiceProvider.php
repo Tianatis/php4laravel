@@ -5,6 +5,7 @@ use App\Classes\AuthModel;
 use App\Classes\MenuModel;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,9 +17,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
        /*в будущем получение пользователя*/
-       $isAuth =  resolve('AuthModel')->isAuth();
-       View::share('auth', $isAuth);
-       View::share('menu', resolve('MenuModel')->showMenu($isAuth));
+       View::share('auth', false);
+       View::share('menu', resolve('MenuModel')->baseMenu());
     }
 
     /**
@@ -31,9 +31,5 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('MenuModel', function ($app) {
              return new MenuModel();
         });
-        $this->app->singleton('AuthModel', function ($app) {
-        return new AuthModel();
-    });
-
     }
 }

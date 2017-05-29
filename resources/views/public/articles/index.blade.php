@@ -1,14 +1,14 @@
 @extends('public.main')
 @section('title')
-	{{ $page_title }}
+	{{ $page_title or ''}}
 @endsection
 
 @section('page_content')
-	{{ $msg }}
+	{{ $msg or '' }}
 
 	@if (count($articles)> 0)
 		@foreach ($articles as $article)
-			@if (!$article['private'] || ($article['private'] && $auth ))
+			@if (!$article['private'] || ($article['private'] && Auth::check() ))
 			<article class="post @if ($article['private'])sticky @endif ">
 
 				<header class="entry-header">
@@ -34,7 +34,7 @@
 						</div>
 
 					<div class="comment-link">
-					@if($auth && $auth <= 2)
+					@if(Auth::check())
 						(<a href="/articles/edit/{{ $article['id'] }}">Редактировать</a>)&nbsp;
 						(<a href="/articles/delete/{{ $article['id'] }}">Удалить</a>)
 					@endif

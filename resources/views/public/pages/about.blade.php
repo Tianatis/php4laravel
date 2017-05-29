@@ -12,7 +12,7 @@
 		<!-- .entry-header -->
 
 		<div class="entry-content">
-			<p>Этот блог создан в рамках курса PHP Strong</p>
+			{!! $content !!}
 		</div>
 		<!-- .entry-content -->
 

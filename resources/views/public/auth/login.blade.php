@@ -10,13 +10,15 @@
 	</header>
 	<!-- .entry-header -->
 
-	<div class="entry-content">
-	<form method="post">
+	<class="entry-content">
+		<form method="POST" action="{{ route('loginPost') }}">
 		{{ csrf_field() }}
 		<label>Логин</label>
-		<input type="text" name="login">
+			{{ $errors->has('login') ? $errors->first('login') : '' }}
+		<input type="text" name="login" value="{{ old('login') }}" required autofocus>
 		<label>Пароль</label>
-		<input type="password" name="password"><br>
+			{{ $errors->has('password') ? $errors->first('password') : '' }}
+		<input type="password" name="password" required><br>
 		<input type="checkbox" name="remember">Запомнить<br>
 		<input type="submit" id="btn_sumb" value="Войти">
 	</form>
