@@ -1,4 +1,4 @@
-@extends('main')
+@extends('public.main')
 @section('title')
 	{{ $page_title }}
 @endsection
