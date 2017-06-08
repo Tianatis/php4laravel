@@ -1,8 +1,4 @@
-@extends('public.main')
-@section('title')
-	{{ $page_title or ''}}
-@endsection
-
+@extends('public.layouts.main')
 @section('page_content')
 	{{ $msg or '' }}
 
