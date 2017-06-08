@@ -17,7 +17,7 @@ class AuthController extends Controller
                 ->route('home');
 
         $menu = resolve('MenuModel')->showMenu($isAuth);
-        return view('public.auth.login', ['title' => 'Авторизация', 'menu' => $menu, 'mess_text' => '']);
+        return view('public.pages.auth.login', ['title' => 'Авторизация', 'menu' => $menu, 'mess_text' => '']);
     }
 
     public function loginPost(Request $request)
@@ -48,7 +48,7 @@ class AuthController extends Controller
                 ->route('home');
 
         $menu = resolve('MenuModel')->showMenu($isAuth);
-        return view('public.auth.register', ['title' => 'Регистрация', 'menu' => $menu, 'mess_text' => '']);
+        return view('public.pages.auth.register', ['title' => 'Регистрация', 'menu' => $menu, 'mess_text' => '']);
     }
 
     public function registerPost(Request $request)

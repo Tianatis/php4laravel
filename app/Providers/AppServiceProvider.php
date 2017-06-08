@@ -17,7 +17,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
        /*в будущем получение пользователя*/
-       View::share('auth', false);
        View::share('menu', resolve('MenuModel')->baseMenu());
     }
 

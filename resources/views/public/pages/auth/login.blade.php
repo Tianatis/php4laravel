@@ -3,7 +3,12 @@
 @section('page_content')
 	@parent
 	@section('block')
-		{!! $content or ''!!}	 
+		@include('public.parts.forms.login')	 
 	@endsection
+	@section('share')
+		{{ $mess_text or ''}}
+	@endsection
+	
 @endsection
+
 
