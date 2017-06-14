@@ -540,16 +540,18 @@ section.error-404,
   section.error-404 .entry-title,
   .box .entry-title {
     color: #82b37e;
-    font-size: 31px;
-    font-size: 3.1rem;
+    font-size: 21px;
+    font-size: 1.5rem;
     font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 300;
     letter-spacing: 0;
     line-height: 1;
     margin: 0;
     padding: 20px 20px 18px;
-    text-transform: uppercase; }
-    article.post .entry-title a,
+    text-transform: uppercase;
+    text-align: left;
+  }
+  article.post .entry-title a,
     article.page .entry-title a,
     section.error-404 .entry-title a,
     .box .entry-title a {
@@ -805,4 +807,29 @@ color: #b2b1ae;
 	border: 2px solid #888888;
     color: #888888;
 }
-
+.slide-plug {
+  position: relative;
+  width: 658px;
+}
+.slide-text{
+  position: absolute;
+  font-weight: bold;
+  top: 0px;
+  text-align: center;
+  width: 100%;
+  font-size: 25px;
+  color: #0c4407;
+  background: rgba(238, 238, 238, 0.75);
+  line-height: 30px;
+  padding: 30px 0px;
+  margin: 0px;
+}
+.r_success{
+  color:green;
+}
+.r_error{
+  color:red;
+}
+.r_note{
+  color:black;
+}

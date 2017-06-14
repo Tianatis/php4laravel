@@ -51,3 +51,31 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 # php4laravel
+
+
+<H1>Notes:</H1>
+
+Session-respond array look like this:
+<pre>
+redirect()
+  ->route('login')
+  ->with('response',
+         [
+           'position' => 'top',
+           'text' => 'text sting',
+           'type' => 'box',
+           'class' => 'r_success'
+         ]
+  );
+</pre> 
+Session-responds have the following options:
+<pre>
+position: 'top', 'embed',
+text: 'text string', trans('string'),
+type: 'box', 'string', false
+class: 'r_success', 'r_error', 'r_note',
+</pre>
+Type 'box' & 'string'  have a fade effect.
+
+
+

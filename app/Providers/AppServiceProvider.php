@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Providers;
-use App\Classes\AuthModel;
-use App\Classes\MenuModel;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Menu;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -16,8 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       /*в будущем получение пользователя*/
-       View::share('menu', resolve('MenuModel')->baseMenu());
+       $menu = Menu::all()
+            ->where('type', (int)strpos(Request()->getPathInfo(), config('app.admin_panel_keyword')));
+       View::share('menu', $menu);
     }
 
     /**
@@ -27,8 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('MenuModel', function ($app) {
-             return new MenuModel();
-        });
+        //
     }
 }

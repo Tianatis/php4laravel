@@ -27,12 +27,23 @@ $(document).ready( function() {
 		});
 	});
 
-	
-	   
+    $(function () {
+      $('.slide-start').mobilyslider({
+            transition: 'fade',
+            animationSpeed: 1100,
+            bullets: true,
+            autoplay: true,
+            autoplaySpeed: 6000,
+            pauseOnHover: true,
+            arrowsHide: false
+        });
+    });
+
 	/*
 	     Скрыть сообщение 
 	*/
 
     $('#message_box').delay(2300).slideUp(1000);
+    $('#message_string').delay(2300).slideUp(1000);
 		
 });

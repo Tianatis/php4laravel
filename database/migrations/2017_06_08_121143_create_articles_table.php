@@ -19,7 +19,11 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->mediumText('intro');
-            $table->timestamp('post-date')->default(Carbon::now()->format('Y-m-d H:i:s'));
+            $table->string('slug',255);
+            $table->string('tagline',255)->nullable();
+            $table->boolean('is_active')->default(1);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->integer('private')->default(0);
             $table->integer('id_user')->default(1);
         });
