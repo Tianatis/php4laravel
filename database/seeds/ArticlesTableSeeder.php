@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Carbon\Carbon;
 class ArticlesTableSeeder extends Seeder
 {
     /**
@@ -11,13 +10,16 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 6; $i++) {
-            $priv = !($i % 2) ? 0 : 1;
+        $faker = Faker\Factory::create('ru_RU');
+        for ($i = 0; $i < 16; $i++) {
+            $priv = !($i % 4) ? 1 : 0;
+            $title = $faker->realText(50);
             DB::table('articles')->insert([
-                'title' => str_random(10),
-                'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-                'intro' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                'post-date' => Carbon::now()->format('Y-m-d H:i:s'),
+                'title' => $title,
+                'tagline' => $faker->realText(30),
+                'slug' => 'post:' . str_slug($title, '-'),
+                'content' => $faker->realText(1024),
+                'intro' => $faker->realText(300),
                 'private' => $priv,
             ]);
         }

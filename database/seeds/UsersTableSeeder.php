@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Carbon\Carbon;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -12,12 +11,16 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'login' => 'Admin',
+            'name' => 'User Vasya',
+            'email' => 'Vasya@mail.ru',
+            'password' => bcrypt('qwerty123'),
+        ]);
+
+        DB::table('users')->insert([
             'name' => 'Tatiana Maltseva',
             'email' => 'lin321@mail.ru',
+            'role' => '1',
             'password' => bcrypt('qwerty123'),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
 }
