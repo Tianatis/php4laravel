@@ -3,7 +3,9 @@
 @section('page_content')
 	@parent
 	@section('block')
-		@include('front.parts.forms.register')
+        <div class="entry-content">
+		    @include('front.parts.forms.register')
+        </div>
 	@endsection
 	@section('share')
         @if (Session::has('response') &&  Session::get('response.position')=== 'embed')

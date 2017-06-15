@@ -13,7 +13,7 @@ class SliderTableSeeder extends Seeder
     {
         DB::table('slider')->insert([
             'src' => 'herbe.jpg',
-            'text' => 'Здесь мы изучаем Laravel',
+            'text' => 'На нашем блоге!',
         ]);
 
         DB::table('slider')->insert([

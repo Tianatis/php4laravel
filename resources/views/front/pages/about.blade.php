@@ -3,7 +3,9 @@
 @section('page_content')
 	@parent
 	@section('block')
-		{!! $content or ''!!}	 
+        <div class="entry-content">
+		    {!! $content or ''!!}
+        </div>
 	@endsection
 @endsection
 

@@ -3,7 +3,9 @@
 @section('page_content')
 	@parent
 	@section('block')
-		@include('back.parts.forms.login')
+        <div class="entry-content">
+		    @include('back.parts.forms.login')
+        </div>
 	@endsection
 	@section('share')
 		{{ $mess_text or ''}}

@@ -7,10 +7,8 @@
 		</header>
 		<!-- .entry-header -->
 
-		<div class="entry-content">
-				@yield('block') 	 
-		</div>
-		<!-- .entry-content -->
+		@yield('block')
+		<!-- .entry-content or entry-edit -->
 
 		<footer class="entry-footer">
 			<div class="clear">

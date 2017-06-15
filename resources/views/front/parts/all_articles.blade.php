@@ -30,10 +30,16 @@
 						</div>
 
 						<div class="comment-link">
-							@if($auth)
-								(<a href="/blog/edit:{{ $article['id'] }}">Редактировать</a>)&nbsp;
-								(<a href="/blog/delete:{{ $article['id'] }}">Удалить</a>)
+						@if($auth)
+							@if($isAuthAdmin)
+								(<a href="{{ route('blog') }}/edit:{{ $article['id'] }}">Редактировать</a>)&nbsp;
+								(<a href="{{ route('blog') }}/delete:{{ $article['id'] }}">Удалить</a>)
+							@else
+								@if($isAdmin)
+									(<a href="{{ route('back.panel.login') }}">Авторизоваться</a>)
+								@endif
 							@endif
+						@endif
 						</div>
 					</div>
 				</footer>

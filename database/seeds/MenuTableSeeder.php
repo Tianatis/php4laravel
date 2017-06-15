@@ -84,9 +84,63 @@ class MenuTableSeeder extends Seeder
             'title' => 'Регистрация',
             'admin_only' => 0,
             'type' => 0,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
+        DB::table('menu')->insert([
+            'order' => '1',
+            'name' => 'index',
+            'link' => '/PANEL',
+            'title' => 'Панель администрирования',
+            'admin_only' => 1,
+            'type' => 1,
             'need_auth' => 1,
             'active' => 1,
         ]);
 
+        DB::table('menu')->insert([
+            'order' => '2',
+            'name' => 'articles',
+            'link' => '/PANEL/articles',
+            'title' => 'Статьи',
+            'admin_only' => 1,
+            'type' => 1,
+            'need_auth' => 1,
+            'active' => 1,
+        ]);
+
+
+        DB::table('menu')->insert([
+            'order' => '3',
+            'name' => 'add_article',
+            'link' => '/PANEL/articles/add',
+            'title' => 'Добавить статью',
+            'admin_only' => 1,
+            'type' => 1,
+            'need_auth' => 1,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '4',
+            'name' => 'add_admin',
+            'link' => '/PANEL/administrators/add',
+            'title' => 'Добавить администратора',
+            'admin_only' => 1,
+            'type' => 1,
+            'need_auth' => 1,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '5',
+            'name' => 'logout',
+            'link' => '/PANEL/logout',
+            'title' => 'Выход',
+            'admin_only' => 1,
+            'type' => 1,
+            'need_auth' => 1,
+            'active' => 1,
+        ]);
     }
 }

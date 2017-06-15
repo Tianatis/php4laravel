@@ -1,4 +1,4 @@
-@extends('front.layouts.page_content')
+@extends('back.layouts.page_content')
 @section('page_content')
 	@if ($article['private'] && $auth || !$article['private'])
 		<?php  
@@ -28,16 +28,8 @@
 		@endsection
 		@section('comment_link')
 			<div class="comment-link">
-				@if($auth)
-					@if($isAuthAdmin)
-						(<a href="{{ route('blog') }}/edit:{{ $article['id'] }}">Редактировать</a>)&nbsp;
-						(<a href="{{ route('blog') }}/delete:{{ $article['id'] }}">Удалить</a>)
-					@else
-						@if($isAdmin)
-							(<a href="{{ route('back.panel.login') }}">Авторизоваться</a>)
-						@endif
-					@endif
-				@endif
+				(<a href="{{ route('back.pages.articles.index') }}/edit:{{ $article['id'] }}">Редактировать</a>)&nbsp;
+				(<a href="{{ route('back.pages.articles.index') }}/delete:{{ $article['id'] }}">Удалить</a>)
 			</div>
 		@endsection
 	@endif

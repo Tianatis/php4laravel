@@ -1,3 +1,4 @@
+@extends('front.layouts.page_content')
 @section('page_content')
 <div id="messages">
 @parent
@@ -6,7 +7,9 @@
 		@endsection
 	
 		@section('block')
+		<div class="entry-content">
 			@include('front.parts.blocks.show_messages')
+		</div>
 		@endsection
 		@section('share')
 			@if($auth)

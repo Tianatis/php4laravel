@@ -46,7 +46,7 @@ class AuthAdminController extends Controller
             return redirect()
                 ->route('back.panel');
 
-        return view('back.pages.auth.add', ['title' => 'Регистрация', 'mess_text' => '']);
+        return view('back.pages.auth.add', ['title' => 'Регистрация']);
     }
 
     public function addPost(Request $request)

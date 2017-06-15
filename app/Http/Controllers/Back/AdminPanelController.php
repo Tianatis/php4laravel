@@ -19,8 +19,9 @@ class AdminPanelController extends Controller
      */
     public function index()
     {
-
-        dd( Auth::guard('admins')->user());
+       //dd( Auth::guard('admins')->user());
         return view('back.pages.index', ['title' => 'Панель администратора']);
     }
+
+
 }

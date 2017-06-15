@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Front;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthUserController extends Controller
 {
@@ -17,7 +17,7 @@ class AuthUserController extends Controller
                 ->route('home');
         }
 
-        return view('front.pages.auth.login', ['title' => 'Авторизация', 'mess_text' => '']);
+        return view('front.pages.auth.login', ['title' => 'Авторизация']);
     }
 
     public function loginPost(Request $request)
@@ -34,7 +34,7 @@ class AuthUserController extends Controller
                 ->route('home')
                 ->with('response', [
                     'position' => 'top',
-                    'text' => 'Вы успешно вошли в систему',
+                    'text' => trans('custom.auth_success'),
                     'type' => 'box',
                     'class' => 'r_success'
                 ]);
@@ -56,7 +56,7 @@ class AuthUserController extends Controller
             return redirect()
                 ->route('home');
 
-        return view('front.pages.auth.register', ['title' => 'Регистрация', 'mess_text' => '']);
+        return view('front.pages.auth.register', ['title' => 'Регистрация']);
     }
 
     public function registerPost(Request $request)
@@ -68,21 +68,15 @@ class AuthUserController extends Controller
             'password2' => 'required|same:password',
         ]);
 
-        DB::table('users')->insert([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'created_at' => Carbon::createFromTimestamp(time())
-                ->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::createFromTimestamp(time())
-                ->format('Y-m-d H:i:s'),
-        ]);
+        $request->merge(['password' => bcrypt($request->password)]);
+
+        User::create($request->except('_token'));
 
         return redirect()
             ->route('home')
             ->with('response', [
                 'position' => 'top',
-                'text' => 'Вы успешно прошли регистрацию. Добро пожаловать!',
+                'text' => trans('custom.register_success'),
                 'type' => 'box',
                 'class' => 'r_success'
             ]);
@@ -95,7 +89,7 @@ class AuthUserController extends Controller
             ->route('home')
             ->with('response', [
                 'position' => 'top',
-                'text' => 'Вы вышли из системы. Возвращайтесь снова!',
+                'text' => trans('custom.logout_success'),
                 'type' => 'box',
                 'class' => 'r_success'
             ]);
