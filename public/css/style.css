@@ -833,3 +833,45 @@ color: #b2b1ae;
 .r_note{
   color:black;
 }
+.error_container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: #B0BEC5;
+  display: table;
+  font-weight: 100;
+  font-family: 'Lato', sans-serif;
+}
+
+.error_content {
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.error_title {
+  font-size: 60px;
+  margin-bottom: 30px;
+}
+.default_error_header h1{
+  text-align: center !important;
+  font-weight: bold !important;
+  font-size: 20px !important;
+  letter-spacing: 2px !important;
+  margin: 0px !important;
+}
+.error_details{
+  color: red;
+}
+#admin_status{
+  position: absolute;
+  color: white;
+  right: 15px;
+  top: 5px;
+}
+.validation_error{
+  color: red;
+  padding-left: 11px;
+  padding-top: 3px;
+
+}

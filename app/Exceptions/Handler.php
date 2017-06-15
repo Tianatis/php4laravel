@@ -4,7 +4,11 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\View;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +48,34 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+       if ($exception instanceof NotFoundHttpException || $exception instanceof ModelNotFoundException) {
+					return response()->view('errors.default_error', [
+						'errorCode' => 404,
+						'title' => trans('custom.oops'),
+                        'errorDetails' => $exception->getMessage(),
+						'errorMessage' => 'Страница не найдена',
+
+					], 404);
+				}
+
+				if ($exception instanceof HttpException) {
+					if ($exception->getStatusCode() == 403) {
+						return response()->view('errors.default_error', [
+							'errorCode' => 403,
+                            'title' => trans('custom.oops'),
+                            'errorDetails' => $exception->getMessage(),
+							'errorMessage' => 'Доступ запрещен'
+						], 403);
+					} else {
+						return response()->view('errors.default_error', [
+							'errorCode' => 500,
+                            'title' => trans('custom.oops'),
+                            'errorDetails' => $exception->getMessage(),
+							'errorMessage' => 'Внутренняя ошибка сервера'
+						], 500);
+					}
+				}
+
         return parent::render($request, $exception);
     }
 

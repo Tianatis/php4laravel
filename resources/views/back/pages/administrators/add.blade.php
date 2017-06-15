@@ -3,10 +3,14 @@
 @section('page_content')
 	@parent
 	@section('block')
-		@include('back.parts.forms.add_admin')
+        <div class="entry-content">
+		    @include('back.parts.forms.add_admin')
+        </div>
 	@endsection
 	@section('share')
-		{{ $mess_text or ''}}
+		@if (Session::has('response') &&  Session::get('response.position')=== 'embed')
+			@include('back.parts.response')
+		@endif
 	@endsection
 	
 @endsection

@@ -6,13 +6,13 @@
 
 @section('content')
 	<div id="mess">
-		@include('front.parts.response')
+		@include('back.parts.response')
 	</div>
 	<div class="container">	
 		<main id="main" class="site-main" role="main">
 			@yield('page_content')
 		</main> 
-	@include('front.parts.back-top')
+	@include('back.parts.back-top')
 	</div>
 	<!-- #main -->
 @endsection

@@ -1,6 +1,6 @@
-@extends('front.layouts.main')
+@extends('back.layouts.main')
 
 @section('page_content')
-    @include('front.parts.all_articles')
+    @include('back.parts.all_articles')
 @endsection
 

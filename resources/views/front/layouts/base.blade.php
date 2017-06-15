@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>{{ $title or '' }}</title>
 		<link href="{{ URL::asset('css/style.css') }}?{{ sha1(microtime(true)) }}" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="{{{ asset('images/favicon.ico') }}}">
 		@yield('head_styles')
 		
 		<!--[if lt IE 9]>

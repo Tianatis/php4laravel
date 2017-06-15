@@ -15,7 +15,8 @@ class GlobalComposer {
     public function compose(View $view)
     {
         $view->with('auth', Auth::user());
-        $view->with('isAdmin', Auth::guard('admins')->check());
+        $view->with('isAdmin', ((Auth::check() && Auth::user()->isAdmin())));
+        $view->with('isAuthAdmin', Auth::guard('admins')->check());
     }
 
 }

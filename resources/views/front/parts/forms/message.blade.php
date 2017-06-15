@@ -1,10 +1,14 @@
 <form method="POST" action="{{ route('messagePost') }}">
 	{{ csrf_field() }}
 	<label>Имя</label>
-	{{ $errors->has('name') ? $errors->first('name') : '' }}
+	@if($errors->has('name'))
+		<p class="validation_error">{{ $errors->first('name') }}</p>
+	@endif
 	<input type="text" name="name"  value="{{ old('name') }}" required><br>
 	<label>Сообщение</label>
-	{{ $errors->has('message') ? $errors->first('message') : '' }}
+	@if($errors->has('message'))
+		<p class="validation_error">{{ $errors->first('message') }}</p>
+	@endif
 	<textarea class="message" name="message" required>{{ old('message') }}</textarea><br>
 	<input type="submit" id="btn_sumb" value="Отправить">
 </form>

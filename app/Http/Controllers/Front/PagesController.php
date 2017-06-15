@@ -11,17 +11,24 @@ class PagesController extends Controller
     {
         $articles = Article::all();
         $slides = Slider::all();
-        return view('front.pages.index', ['articles' => $articles, 'slides' => $slides, 'title' => 'Главная']);
+        $title = 'Главная';
+        return view('front.pages.index', compact(['articles', 'title', 'slides']));
     }
 
     public function about()
     {
-        return view('front.pages.about', ['title' => 'О бологе', 'content' => '<p>Этот блог создан в рамках курса PHP Strong (PHP4)</p>']);
+        $title = 'О бологе';
+        $content = '<p>Этот блог создан в рамках курса PHP Strong (PHP4)</p>';
+
+        return view('front.pages.about', compact(['content', 'title']));
     }
 
     public function contacts()
     {
-        return view('front.pages.contacts', ['title' => 'Контакты', 'content' => '<p>Где-то на бескрайних просторах инета</p>']);
+        $title = 'Контакты';
+        $content = '<p>Где-то на бескрайних просторах инета</p>';
+
+        return view('front.pages.contacts', compact(['content', 'title']));
 
     }
 }

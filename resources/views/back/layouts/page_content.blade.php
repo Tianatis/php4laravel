@@ -7,9 +7,7 @@
 		</header>
 		<!-- .entry-header -->
 
-		<div class="entry-content">
-				@yield('block') 	 
-		</div>
+		@yield('block')
 		<!-- .entry-content -->
 
 		<footer class="entry-footer">

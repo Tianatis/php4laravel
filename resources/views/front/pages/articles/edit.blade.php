@@ -1,4 +1,4 @@
-@extends('back.layouts.page_content')
+@extends('front.layouts.page_content')
 @section('page_content')
 	<?php  
 		$title = 'Редактирование статьи';
@@ -10,12 +10,12 @@
 	@endsection
 	@section('block')
 	<div class="entry-edit">
-		@include('back.parts.forms.article_edit')
+		@include('front.parts.forms.article_edit')
 	</div>
 	@endsection
 	@section('share')
 		@if (Session::has('response') &&  Session::get('response.position')=== 'embed')
-                @include('back.parts.response')
+                @include('front.parts.response')
         @endif	
 	@endsection
 @endsection

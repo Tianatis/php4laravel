@@ -1,16 +1,24 @@
 <form method="POST" enctype="application/x-www-form-urlencoded" action="{{ route('registerPost') }}">
 	{{ csrf_field() }}
 	<label>Имя</label>
-		{{ $errors->has('name') ? $errors->first('name') : '' }}
+	@if($errors->has('name'))
+		<p class="validation_error">{{ $errors->first('name') }}</p>
+	@endif
 	<input type="text" name="name" value="{{ old('name') }}" required>
 	<label>Е-мэйл</label>
-		{{ $errors->has('email') ? $errors->first('email') : '' }}
+	@if($errors->has('email'))
+		<p class="validation_error">{{ $errors->first('email') }}</p>
+	@endif
 	<input type="text" name="email" value="{{ old('email') }}" required>
 	<label>Пароль</label>
-		{{ $errors->has('password') ? $errors->first('password') : '' }}
-	<input type="password" name="password" value="{{ old('password') }}" required><br>
+	@if($errors->has('password'))
+		<p class="validation_error">{{ $errors->first('password') }}</p>
+	@endif
+	<input type="password" name="password" required><br>
 	<label>Повтор пароля</label>
-		{{ $errors->has('password2') ? $errors->first('password2') : '' }}
-	<input type="password" name="password2" value="{{ old('password2') }}" required><br>
-	<input type="submit" id="btn_sumb" value="Войти">
+	@if($errors->has('password2'))
+		<p class="validation_error">{{ $errors->first('password2') }}</p>
+	@endif
+	<input type="password" name="password2" required><br>
+	<input type="submit" id="btn_sumb" value="Зарегистрироваться">
 </form>
