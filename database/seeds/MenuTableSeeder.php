@@ -14,82 +14,6 @@ class MenuTableSeeder extends Seeder
         DB::table('menu')->insert([
             'order' => '1',
             'name' => 'index',
-            'link' => '/',
-            'title' => 'Главная',
-            'admin_only' => 0,
-            'type' => 0,
-            'need_auth' => 0,
-            'active' => 1,
-        ]);
-
-        DB::table('menu')->insert([
-            'order' => '2',
-            'name' => 'blog',
-            'link' => '/blog',
-            'title' => 'Блог',
-            'admin_only' => 0,
-            'type' => 0,
-            'need_auth' => 0,
-            'active' => 1,
-        ]);
-
-        DB::table('menu')->insert([
-            'order' => '3',
-            'name' => 'about',
-            'link' => '/about',
-            'title' => 'О блоге',
-            'admin_only' => 0,
-            'type' => 0,
-            'need_auth' => 0,
-            'active' => 1,
-        ]);
-
-        DB::table('menu')->insert([
-            'order' => '4',
-            'name' => 'contacts',
-            'link' => '/contacts',
-            'title' => 'Контакты',
-            'admin_only' => 0,
-            'type' => 0,
-            'need_auth' => 0,
-            'active' => 1,
-        ]);
-
-        DB::table('menu')->insert([
-            'order' => '5',
-            'name' => 'login',
-            'link' => '/login',
-            'title' => 'Авторизация',
-            'admin_only' => 0,
-            'type' => 0,
-            'need_auth' => 0,
-            'active' => 1,
-        ]);
-
-        DB::table('menu')->insert([
-            'order' => '5',
-            'name' => 'logout',
-            'link' => '/logout',
-            'title' => 'Выход',
-            'admin_only' => 0,
-            'type' => 0,
-            'need_auth' => 1,
-            'active' => 1,
-        ]);
-
-        DB::table('menu')->insert([
-            'order' => '6',
-            'name' => 'registration',
-            'link' => '/register',
-            'title' => 'Регистрация',
-            'admin_only' => 0,
-            'type' => 0,
-            'need_auth' => 0,
-            'active' => 1,
-        ]);
-        DB::table('menu')->insert([
-            'order' => '1',
-            'name' => 'index',
             'link' => '/PANEL',
             'title' => 'Панель администрирования',
             'admin_only' => 1,
@@ -100,6 +24,104 @@ class MenuTableSeeder extends Seeder
 
         DB::table('menu')->insert([
             'order' => '2',
+            'name' => 'index',
+            'link' => '/',
+            'title' => 'Главная',
+            'admin_only' => 0,
+            'type' => 0,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '3',
+            'name' => 'blog',
+            'link' => '/blog',
+            'title' => 'Блог',
+            'admin_only' => 0,
+            'type' => 0,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '4',
+            'name' => 'about',
+            'link' => '/about',
+            'title' => 'О блоге',
+            'admin_only' => 0,
+            'type' => 0,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '5',
+            'name' => 'contacts',
+            'link' => '/contacts',
+            'title' => 'Контакты',
+            'admin_only' => 0,
+            'type' => 0,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '6',
+            'name' => 'login',
+            'link' => '/login',
+            'title' => 'Авторизация',
+            'admin_only' => 0,
+            'type' => 0,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '6',
+            'name' => 'logout',
+            'link' => '/logout',
+            'title' => 'Выход',
+            'admin_only' => 0,
+            'type' => 0,
+            'need_auth' => 1,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '7',
+            'name' => 'registration',
+            'link' => '/register',
+            'title' => 'Регистрация',
+            'admin_only' => 0,
+            'type' => 0,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
+        DB::table('menu')->insert([
+            'order' => '1',
+            'name' => 'home',
+            'link' => '/',
+            'title' => 'Клиентская часть',
+            'admin_only' => 0,
+            'type' => 1,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '2',
+            'name' => 'index',
+            'link' => '/PANEL',
+            'title' => 'Обзор',
+            'admin_only' => 1,
+            'type' => 1,
+            'need_auth' => 1,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '3',
             'name' => 'articles',
             'link' => '/PANEL/articles',
             'title' => 'Статьи',
@@ -111,7 +133,7 @@ class MenuTableSeeder extends Seeder
 
 
         DB::table('menu')->insert([
-            'order' => '3',
+            'order' => '4',
             'name' => 'add_article',
             'link' => '/PANEL/articles/add',
             'title' => 'Добавить статью',
@@ -122,7 +144,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '4',
+            'order' => '5',
             'name' => 'add_admin',
             'link' => '/PANEL/administrators/add',
             'title' => 'Добавить администратора',
@@ -133,7 +155,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '5',
+            'order' => '6',
             'name' => 'logout',
             'link' => '/PANEL/logout',
             'title' => 'Выход',
