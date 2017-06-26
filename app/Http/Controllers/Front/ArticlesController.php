@@ -10,7 +10,9 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::orderBy('id', 'DESC')
+        ->paginate(5);
+
         return view('front.pages.articles.index', ['articles' => $articles, 'title' => 'Блог']);
     }
 
@@ -27,7 +29,7 @@ class ArticlesController extends Controller
             abort(403, trans('custom.view_need_auth'));
          }
 
-        $title = $article['title'];
+        $title = $article->title;
         return view('front.pages.articles.article', compact(['article', 'title']));
     }
 
@@ -39,7 +41,7 @@ class ArticlesController extends Controller
         } catch (\Exception $e) {
             abort(404, trans('custom.err_edit_article'));
         }
-        $title = 'Редактирование: '.$article['title'];
+        $title = 'Редактирование: '.$article->title;
         return view('front.pages.articles.edit', compact(['article', 'title']));
     }
 
@@ -55,8 +57,8 @@ class ArticlesController extends Controller
          что она успешно отредактирована и это без мягкого удаления! */
         try {
             Article::where('id', $id)
-                ->update($request->except('_token'));
-
+               // ->update($request->except('_token'));
+               ->update($request->except('_token'));
         } catch (\Exception $e) {
             abort(404, trans('custom.err_edit_article'));
         }
@@ -75,8 +77,7 @@ class ArticlesController extends Controller
     {
         /* защита задана в роутах*/
         try {
-            Article::where('id', $id)
-                ->delete();
+            Article::destroy($id);
         } catch (\Exception $e) {
             abort(404, trans('custom.article_already_deleted'));
         }

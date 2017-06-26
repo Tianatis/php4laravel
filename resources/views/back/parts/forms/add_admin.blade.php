@@ -1,4 +1,4 @@
-<form method="POST" enctype="application/x-www-form-urlencoded" action="{{ route('back.panel.administrators.addPost') }}">
+<form method="POST" enctype="application/x-www-form-urlencoded" action="{{ route('back.pages.administrators.addPost') }}">
 	{{ csrf_field() }}
 	<label>Логин</label>
 	@if($errors->has('login'))
@@ -15,12 +15,14 @@
 		<p class="validation_error">{{ $errors->first('email') }}</p>
 	@endif
 	<input type="text" name="email" value="{{ old('email') }}" required>
-	@if($errors->has('role'))
-		<p class="validation_error">{{ $errors->first('role') }}</p>
+	@if($errors->has('role_id'))
+		<p class="validation_error">{{ $errors->first('role_id') }}</p>
 	@endif
-	<select name="role">
-		@if $errors->has('role')
-			<option value="{{ $errors->first('role.id') }}" selected="selected" data-skip="1">{{ $errors->first('role.name') }}</option>
+	<label>Роль</label>
+	<select name="role_id">
+		@if ($errors->has('role_id'))
+			<p class="validation_error">{{ $errors->first('role_id') }}</p>
+			<option value="{{ old('role_id') }}" selected="selected" data-skip="1">{{ $role[old('role_id')] }}</option>
 		@endif
 		@foreach ($roles as $role)
 				<option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -37,5 +39,5 @@
 		<p class="validation_error">{{ $errors->first('password2') }}</p>
 	@endif
 	<input type="password" name="password2" required><br>
-	<input type="submit" id="btn_sumb" value="Войти">
+	<input type="submit" id="btn_sumb" value="Добавить">
 </form>

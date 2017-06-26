@@ -70,7 +70,7 @@ class AuthUserController extends Controller
 
         $request->merge(['password' => bcrypt($request->password)]);
 
-        User::create($request->except('_token'));
+        User::create($request->all());
 
         return redirect()
             ->route('home')

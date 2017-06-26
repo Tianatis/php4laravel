@@ -3,7 +3,6 @@ namespace App\Http\ViewComposers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-
 class GlobalComposer {
 
     /**
@@ -16,7 +15,8 @@ class GlobalComposer {
     {
         $view->with('auth', Auth::user());
         $view->with('isAdmin', ((Auth::check() && Auth::user()->isAdmin())));
-        $view->with('isAuthAdmin', Auth::guard('admins')->check());
+        $view->with('isAuthAdmin', (Auth::guard('admins')->check()));
+        $view->with('isSuperAdmin', (Auth::guard('admins')->check() && Auth::guard('admins')->user()->isSuperAdmin()));
     }
 
 }

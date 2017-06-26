@@ -12,9 +12,7 @@ class AdminsTableSeeder extends Seeder
     {
         DB::table('admins')->insert([
             'login' => 'Admin',
-            'name' => 'Tatiana Maltseva',
-            'email' => 'lin321@mail.ru',
-            'role' => '1',
+            'role_id' => '1',
             'password' => bcrypt('qwerty123'),
         ]);
     }

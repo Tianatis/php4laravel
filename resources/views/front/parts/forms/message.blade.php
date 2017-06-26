@@ -1,10 +1,5 @@
-<form method="POST" action="{{ route('messagePost') }}">
+<form method="POST" action="{{ route('front.pages.massagePost') }}">
 	{{ csrf_field() }}
-	<label>Имя</label>
-	@if($errors->has('name'))
-		<p class="validation_error">{{ $errors->first('name') }}</p>
-	@endif
-	<input type="text" name="name"  value="{{ old('name') }}" required><br>
 	<label>Сообщение</label>
 	@if($errors->has('message'))
 		<p class="validation_error">{{ $errors->first('message') }}</p>

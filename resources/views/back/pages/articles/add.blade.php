@@ -1,16 +1,12 @@
 @extends('back.layouts.page_content')
 @section('page_content')
-	<?php  
-		$title = 'Добавление статьи';
-		$page_content = 'Введите текст';
-	?>
 	@parent
 	@section('header_class')
 			sticky
 	@endsection
 	@section('block')
 	<div class="entry-content">
-		@include('back.parts.forms.article_add')
+		@include('back.parts.forms.add_article')
 	</div>
 	@endsection
 	@section('share')

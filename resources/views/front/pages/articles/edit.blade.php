@@ -1,9 +1,5 @@
 @extends('front.layouts.page_content')
 @section('page_content')
-	<?php  
-		$title = 'Редактирование статьи';
-		$page_content = $article['content'];
-	?>
 	@parent
 	@section('header_class')
 			sticky

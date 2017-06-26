@@ -4,7 +4,11 @@
 	@parent
 	@section('block')
         <div class="entry-content">
-		    {!! $content or 'Здесь может быть статистика блога'!!}
+			@include('back.parts.view')
         </div>
+	@endsection
+	@section('share')
+
+		Вы зашли как: {{ Auth::guard('admins')->user()->login }}
 	@endsection
 @endsection

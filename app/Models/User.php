@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use DB;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'login', 'name', 'email', 'password',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -27,10 +27,32 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function admin()
+    {
+        return $this->belongsTo('App\Models\Admin');
+    }
+
     public function isAdmin()
     {
-        return  $this->role < 3 ?  true : false;
+        return  $this->is_admin == 1 ?  true : false;
 
         // this looks for an role column in your users table
+    }
+
+    public function article()
+    {
+        return $this->hasMany('App\Models\Article');
+    }
+
+
+
+    public function scopeLastUser($query)
+    {
+        return $query->where('created_at', '>', DB::Raw('NOW() - ( 7 *24 *3600 )'));
+    }
+
+    public function message()
+    {
+        return $this->hasMany('App\Models\Message');
     }
 }

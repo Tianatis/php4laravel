@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content');
+            $table->integer('user_id')->default(1);
             $table->mediumText('intro');
             $table->string('slug',255);
             $table->string('tagline',255)->nullable();

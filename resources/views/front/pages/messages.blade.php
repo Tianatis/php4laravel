@@ -1,15 +1,17 @@
 @extends('front.layouts.page_content')
+@section('bottom_scripts')
+	<script language="javascript" src="{{ URL::asset('js/script_messages.js') }}?{{ sha1(microtime(true)) }}" type="text/javascript" charset="utf-8"></script>
+
+@endsection
 @section('page_content')
 <div id="messages">
 @parent
-		@section('header_opts')
+	@section('block')
 			@if(isset($messages))
-		@endsection
-	
-		@section('block')
-		<div class="entry-content">
-			@include('front.parts.blocks.show_messages')
-		</div>
+				<div class="entry-content">
+					@include('front.parts.blocks.show_messages')
+				</div>
+			@endif
 		@endsection
 		@section('share')
 			@if($auth)
@@ -21,9 +23,8 @@
 		@endsection
 		@section('comment_link')
 			<div class="comment-link">
-					Всего сообщений: {{ echo (int)count($messages) }}				
+					Всего сообщений: {{ (int)count($messages) }}
 				</div>
 		@endsection
-
 </div>
 @endsection

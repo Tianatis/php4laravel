@@ -13,11 +13,11 @@ class MenuTableSeeder extends Seeder
     {
         DB::table('menu')->insert([
             'order' => '1',
-            'name' => 'index',
+            'name' => 'panel',
             'link' => '/PANEL',
-            'title' => 'Панель администрирования',
+            'title' => 'Админка',
             'admin_only' => 1,
-            'type' => 1,
+            'type' => 0,
             'need_auth' => 1,
             'active' => 1,
         ]);
@@ -46,6 +46,17 @@ class MenuTableSeeder extends Seeder
 
         DB::table('menu')->insert([
             'order' => '4',
+            'name' => 'messages',
+            'link' => '/messages',
+            'title' => 'Сообщения',
+            'admin_only' => 0,
+            'type' => 0,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '5',
             'name' => 'about',
             'link' => '/about',
             'title' => 'О блоге',
@@ -56,7 +67,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '5',
+            'order' => '6',
             'name' => 'contacts',
             'link' => '/contacts',
             'title' => 'Контакты',
@@ -67,7 +78,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '6',
+            'order' => '7',
             'name' => 'login',
             'link' => '/login',
             'title' => 'Авторизация',
@@ -78,7 +89,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '6',
+            'order' => '7',
             'name' => 'logout',
             'link' => '/logout',
             'title' => 'Выход',
@@ -89,7 +100,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '7',
+            'order' => '8',
             'name' => 'registration',
             'link' => '/register',
             'title' => 'Регистрация',
@@ -102,7 +113,7 @@ class MenuTableSeeder extends Seeder
             'order' => '1',
             'name' => 'home',
             'link' => '/',
-            'title' => 'Клиентская часть',
+            'title' => 'Сайт',
             'admin_only' => 0,
             'type' => 1,
             'need_auth' => 0,
@@ -131,12 +142,11 @@ class MenuTableSeeder extends Seeder
             'active' => 1,
         ]);
 
-
         DB::table('menu')->insert([
             'order' => '4',
-            'name' => 'add_article',
-            'link' => '/PANEL/articles/add',
-            'title' => 'Добавить статью',
+            'name' => 'administrators',
+            'link' => '/PANEL/administrators',
+            'title' => 'Aдмины',
             'admin_only' => 1,
             'type' => 1,
             'need_auth' => 1,
@@ -145,9 +155,9 @@ class MenuTableSeeder extends Seeder
 
         DB::table('menu')->insert([
             'order' => '5',
-            'name' => 'add_admin',
-            'link' => '/PANEL/administrators/add',
-            'title' => 'Добавить администратора',
+            'name' => 'messages',
+            'link' => '/PANEL/messages',
+            'title' => 'Сообщения',
             'admin_only' => 1,
             'type' => 1,
             'need_auth' => 1,

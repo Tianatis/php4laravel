@@ -8,7 +8,9 @@
         </div>
 	@endsection
 	@section('share')
-		{{ $mess_text or ''}}
+		@if (Session::has('response') &&  Session::get('response.position')=== 'embed')
+			@include('back.parts.response')
+		@endif
 	@endsection
 	
 @endsection
