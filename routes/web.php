@@ -26,11 +26,22 @@ use Illuminate\Support\Facades\Route;
         Route::group(['middleware' => 'isAdmin'], function () {
             Route::get('/', 'AdminPanelController@index')
                 ->name('back.panel');
-        /* Администраторы */
-            Route::get('/administrators/add', 'AuthAdminController@add')
-                ->name('backAddAdministrator');
-            Route::post('/administrators/add', 'AuthAdminController@addPost')
-                ->name('backAddAdministratorPost');
+            Route::group(['middleware' => 'isSuperAdmin', 'prefix' =>'administrators'], function () {
+            /* Администраторы */
+                Route::get('/', 'AdminsController@index')
+                    ->name('back.pages.administrators.index');
+                Route::get('/add', 'AdminsController@add')
+                    ->name('back.pages.administrators.add');
+                Route::post('/add', 'AdminsController@addPost')
+                    ->name('back.pages.administrators.addPost');
+                Route::get('/edit:{id}', 'AdminsController@edit')
+                    ->name('back.pages.administrators.edit');
+                Route::post('/edit:{id}', 'AdminsController@editPost')
+                    ->name('back.pages.administrators.editPost');
+                Route::get('/delete:{id}', 'AdminsController@delete')
+                    ->name('back.pages.administrators.delete');
+            });
+
 
         /* Статьи */
             Route::group(['prefix' => 'articles'], function () {
@@ -49,6 +60,30 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/delete:{id}', 'ArticlesController@delete')
                     ->name('backDdeleteArticle');
             });
+        });
+        /* Сообщения */
+
+
+        Route::group(['prefix' => 'messages'], function () {
+
+            Route::get('/', 'MessagesController@index')
+                ->name('back.pages.messages.index');
+            Route::get('/message:{id}', 'MessagesController@message')
+                ->name('back.pages.messages.message');
+            Route::get('/delete:{id}', 'MessagesController@delete')
+                ->name('back.pages.messages.delete');
+            Route::get('/{id}/add:respond', 'MessagesController@respond')
+                ->name('back.pages.messages.add.respond');
+            Route::post('/{id}/add:respond', 'MessagesController@respondPost')
+                ->name('back.pages.messages.add.respondPost');
+            Route::get('/{id}/edit:respond', 'MessagesController@editRespond')
+                ->name('back.pages.messages.edit.respond');
+            Route::post('/{id}/edit:respond', 'MessagesController@editRespondPost')
+                ->name('back.pages.messages.edit.respondPost');
+            Route::get('/{id}/delete:respond', 'MessagesController@deleteRespond')
+                ->name('back.pages.messages.delete.respond');
+
+
         });
     });
 
@@ -102,10 +137,30 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/edit:{id}', 'ArticlesController@editPost')
                     ->name('editArticlePost');
                 Route::get('/delete:{id}', 'ArticlesController@delete')
-                    ->name('edeleteArticle');
+                    ->name('deleteArticle');
             });
 
         });
+
+        /* Сообщения */
+
+        Route::group(['prefix' => 'messages'], function () {
+            Route::get('/', 'MessagesController@index')
+                ->name('front.pages.messages');
+            Route::post('/', 'MessagesController@addPost')
+                ->name('front.pages.massagePost');
+            Route::group(['middleware' => 'isAdmin'], function () {
+                Route::get('/delete:{id}', 'MessagesController@delete')
+                    ->name('front.pages.messages.delete');
+                Route::post('/{id}/add:respond', 'MessagesController@respondPost')
+                    ->name('front.pages.messages.add.respondPost');
+                Route::get('/{id}/delete:respond', 'MessagesController@deleteRespond')
+                    ->name('front.pages.messages.delete.respond');
+            });
+
+        });
+
+
     });
 
 

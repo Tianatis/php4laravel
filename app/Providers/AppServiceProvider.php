@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Providers;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Menu;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -14,9 +11,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       $menu = Menu::all()
-            ->where('type', (int)strpos(Request()->getPathInfo(), config('app.admin_panel_keyword')));
-       View::share('menu', $menu);
+       //
     }
 
     /**

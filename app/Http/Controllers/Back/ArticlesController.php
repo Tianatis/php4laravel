@@ -10,7 +10,8 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::orderBy('id', 'DESC')
+            ->paginate(10);
         return view('back.pages.articles.index', ['articles' => $articles, 'title' => 'Блог']);
     }
 
@@ -23,11 +24,7 @@ class ArticlesController extends Controller
             abort(404, trans('custom.err_article'));
         }
 
-        if ($article->private && !Auth::check()){
-            abort(403, trans('custom.view_need_auth'));
-         }
-
-        $title = $article['title'];
+        $title = $article->title;
         return view('back.pages.articles.article', compact(['article', 'title']));
     }
 
@@ -42,6 +39,7 @@ class ArticlesController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|min:5',
         ]);
+        $request->merge(['user_id' => Auth::user()->id]);
         $request->merge(['slug' => str_slug($request->input('title'), '-')]);
         $request->merge(['intro' => intro($request->input('content'))]);
         $request->merge(['private' => $request->input('private') ? true : false]);
@@ -66,7 +64,7 @@ class ArticlesController extends Controller
         } catch (\Exception $e) {
             abort(404, trans('custom.err_edit_article'));
         }
-        $title = 'Редактирование: '.$article['title'];
+        $title = 'Редактирование: '.$article->title;
         return view('back.pages.articles.edit', compact(['article', 'title']));
     }
 
@@ -102,8 +100,7 @@ class ArticlesController extends Controller
     {
         /* защита задана в роутах*/
         try {
-            Article::where('id', $id)
-                ->delete();
+            Article::destroy($id);
         } catch (\Exception $e) {
             abort(404, trans('custom.article_already_deleted'));
         }

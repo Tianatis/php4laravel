@@ -15,7 +15,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'login', 'name', 'email', 'password',
+        'login', 'role_id', 'password',
     ];
 
     /**
@@ -26,4 +26,25 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function isSuperAdmin()
+    {
+        return  $this->role_id == 1 ?  true : false;
+    }
+
+    public function user()
+    {
+        return $this->hasOne('App\Models\User');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
+    }
+
+    public function respond()
+    {
+        return $this->hasMany('App\Models\Respond');
+    }
 }

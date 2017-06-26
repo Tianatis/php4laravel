@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('back.pages.articles.index') }}/add">
+<form method="POST" action="{{ route('backAddArticlePost') }}">
     {{ csrf_field() }}
     <label>Заголовок</label>
     @if($errors->has('title'))

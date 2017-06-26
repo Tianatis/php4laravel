@@ -15,6 +15,8 @@ class ComposerServiceProvider extends ServiceProvider {
     public function boot(ViewFactory $view)
     {
         $view->composer('*', 'App\Http\ViewComposers\GlobalComposer');
+        $view->composer('front.parts.navigation', 'App\Http\ViewComposers\BaseComposer');
+        $view->composer('back.parts.navigation', 'App\Http\ViewComposers\BaseComposer');
     }
 
     public function register()

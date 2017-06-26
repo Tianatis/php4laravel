@@ -1,26 +1,28 @@
-@foreach ($messages as $one)
+@foreach ($messages as $message)
 	<div class="clear">
 		<div class="item"><div class="item-img"></div>
-			<strong>{{ $one['message']['name'] }}</strong>  &nbsp; 
-			<span>({{ date('d.m.Y h:i',strtotime($one['message']['dt'])) }})</span>:
+			<strong>{{ $message->user->name }}</strong>  &nbsp;
+			<span>({{ date('d.m.Y h:i',strtotime($message->created_at)) }})</span>:
 			@if($auth)
-				<div id="delete_mess">(<a href="/messages/delete/{{ $one['message']['id_message'] }}">Удалить</a>)</div>
-				<div id="respond_mess">(<a href="/responds/add/<{{ ['message']['id_message'] }}">Ответить</a>)</div>
+				<div class="delete_mess">(<a href="/messages/delete:{{ $message->id }}">Удалить</a>)</div>
+				<div class="respond_mess">(<a href="#">Ответить</a>)</div>
 			@endif
 			
-			<div>{{ $one['message']['message'] }}</div>
-			
+			<div>{{ $message->message }}</div>
+			<div class="respond_hidden_form">
+				@include('front.parts.forms.respond')
+			</div>
 		</div>
-		@if($one['responds'])
-		@foreach ($one['responds'] as $resp)
+		@if(isset($message->respond))
+		@foreach ($message->respond as $respond)
 			<div class="resp"><div class="resp-img"></div>
-				<strong>{{ $resp['responder_name'] }}</strong>  &nbsp; 
-				<span>({{ date('d.m.Y h:i',strtotime($resp['dta'])) }})</span>:
-				@if($auth)
-					<div id="delete_mess">(<a href="/responds/delete/{{ $resp['id_resp'] }}">Удалить</a>)</div>
+				<strong>{{ $respond->admin->user->name }}</strong>  &nbsp;
+				<span>({{ date('d.m.Y h:i',strtotime($respond->created_at)) }})</span>:
+				@if($isAuthAdmin)
+					<div class="delete_mess">(<a href="/messages/{{ $respond->id }}/delete:respond/">Удалить</a>)</div>
 				@endif
 				
-				<div>{{ $resp['respond_text'] }}</div>
+				<div>{{ $respond->respond }}</div>
 				
 			</div>
 		@endforeach

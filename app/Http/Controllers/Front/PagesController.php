@@ -9,7 +9,8 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::orderBy('id', 'DESC')
+            ->paginate(5);
         $slides = Slider::all();
         $title = 'Главная';
         return view('front.pages.index', compact(['articles', 'title', 'slides']));
