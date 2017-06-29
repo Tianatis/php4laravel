@@ -14,12 +14,12 @@
 			@endif
 		@endsection
 		@section('share')
-			@if($auth)
-				<h2 class="entry-title">Оставьте Ваше сообщение</h2>
-				<div id="message_form">
-					@include('front.parts.forms.message')
-				</div>
-			@endif
+			@can('add-message')
+					<h2 class="entry-title">Оставьте Ваше сообщение</h2>
+					<div id="message_form">
+						@include('front.parts.forms.message')
+					</div>
+			@endcan
 		@endsection
 		@section('comment_link')
 			<div class="comment-link">

@@ -84,6 +84,10 @@ class AuthUserController extends Controller
 
     public function logout()
     {
+        if(Auth::guard('admins')->check()) {
+            Auth::guard('admins')->logout();
+        }
+
         Auth::logout();
         return redirect()
             ->route('home')

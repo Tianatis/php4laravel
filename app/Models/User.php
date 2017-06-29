@@ -39,6 +39,21 @@ class User extends Authenticatable
         // this looks for an role column in your users table
     }
 
+    public function isSuperAdmin()
+    {
+        return  $this->admin->role_id == 1 ?  true : false;
+    }
+
+    public function isAdministrator()
+    {
+        return  ($this->admin->role_id == 1 || $this->admin->role_id == 2) ?  true : false;
+    }
+
+    public function isEditor()
+    {
+        return  $this->admin->role_id == 3 ?  true : false;
+    }
+
     public function article()
     {
         return $this->hasMany('App\Models\Article');

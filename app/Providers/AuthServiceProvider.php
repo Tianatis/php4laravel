@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Respond' => 'App\Policies\RespondPolicy',
     ];
 
     /**
@@ -25,6 +25,26 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('add-message', function ($user) {
+
+            return $user->is_admin == 0;
+
+        });
+        Gate::define('respond-message', function ($user) {
+            /* передан пользователь из таблицы admins */
+            return $user->role_id < 3;
+
+        });
+        /* альтернативный метод */
+        Gate::define('delete-message', function ($user) {
+            /* передан пользователь из таблицы users */
+            /* используем связанную таблцу admins */
+            return $user->admin->isAdministrator();
+
+        });
+        Gate::define('delete-respond', 'App\Policies\RespondPolicy@delete');
+
         //
+
     }
 }

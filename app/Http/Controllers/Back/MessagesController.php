@@ -42,9 +42,11 @@ class MessagesController extends Controller
 
     public function respondPost(Request $request, $id)
     {
+
         if(!Auth::guard('admins')->check()){
             abort(403, trans('custom.need_admin'));
         }else{
+            $this->authorize('create', Respond::class);
             try {
                 Message::findOrFail($id);
             } catch (\Exception $e) {
@@ -88,12 +90,13 @@ class MessagesController extends Controller
 
     public function editRespondPost(Request $request, $id)
     {
-        if(!Auth::check()){
+        if(!Auth::guard('admins')->check()){
             abort(403, trans('custom.view_need_auth'));
         }else{
             try {
 
                 $respond = Respond::findOrFail($id);
+                $this->authorize('update', $respond);
                 $message = Message::where('id', $respond->message_id)
                     ->firstOrFail();
             } catch (\Exception $e) {
@@ -142,6 +145,7 @@ class MessagesController extends Controller
 
     public function deleteRespond($id)
     {
+        $this->authorize('delete', Respond::class);
         /* защита задана в роутах*/
         try {
             Respond::destroy($id);

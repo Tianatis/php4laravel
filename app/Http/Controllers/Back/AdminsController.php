@@ -13,6 +13,7 @@ class AdminsController extends Controller
 
     public function index()
     {
+
         $administrators = Admin::all();
         //dd($administrators);
         return view('back.pages.administrators.index', ['administrators' => $administrators, 'title' => 'Список администраторов']);
