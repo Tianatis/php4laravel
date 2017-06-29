@@ -10,6 +10,7 @@ class ArticlesController extends Controller
 
     public function index()
     {
+
         $articles = Article::orderBy('id', 'DESC')
         ->paginate(5);
 

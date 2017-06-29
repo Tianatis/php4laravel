@@ -11,7 +11,6 @@
 		</div>
 	@endif
 	<nav class="site-navigation" role="navigation">
-		<div class="container">
 			<ul class="menu nav-menu">
 				@if (isset($menu) && count($menu) > 0)
 					@foreach ($menu as $item)
@@ -41,6 +40,5 @@
 					@endforeach
 				@endif
 			</ul>
-		</div>
 	</nav>
 </header>

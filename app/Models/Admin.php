@@ -33,6 +33,16 @@ class Admin extends Authenticatable
         return  $this->role_id == 1 ?  true : false;
     }
 
+    public function isAdministrator()
+    {
+        return  ($this->role_id == 1 || $this->role_id == 2) ?  true : false;
+    }
+
+    public function isEditor()
+    {
+        return  $this->role_id == 3 ?  true : false;
+    }
+
     public function user()
     {
         return $this->hasOne('App\Models\User');
