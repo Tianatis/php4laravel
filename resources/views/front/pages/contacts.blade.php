@@ -4,7 +4,7 @@
 	@parent
 	@section('block')
         <div class="entry-content">
-		    {!! $content or ''!!}
+			@include('front.parts.forms.contact_form')
         </div>
 	@endsection
 @endsection
