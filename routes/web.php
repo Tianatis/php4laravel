@@ -97,6 +97,8 @@ use Illuminate\Support\Facades\Route;
 
         Route::get('/contacts', 'PagesController@contacts')
             ->name('contacts');
+        Route::post('/contacts', 'PagesController@contactsPost')
+            ->name('contactsPost');
 
         /* Аторизация */
         Route::get('/login', 'AuthUserController@login')
@@ -119,7 +121,7 @@ use Illuminate\Support\Facades\Route;
         Route::group(['prefix' => 'blog'], function () {
             Route::get('/', 'ArticlesController@index')
                 ->name('blog');
-            Route::get('/post:{slug}', 'ArticlesController@article')
+            Route::get('/post{id}:{slug}', 'ArticlesController@article')
                 ->name('article')
                 ->where([
                     'slug' => '[А-я0-9A-z/-]+'

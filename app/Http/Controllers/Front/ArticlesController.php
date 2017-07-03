@@ -10,17 +10,17 @@ class ArticlesController extends Controller
 
     public function index()
     {
-
+        $title = 'Блог';
         $articles = Article::orderBy('id', 'DESC')
         ->paginate(5);
 
-        return view('front.pages.articles.index', ['articles' => $articles, 'title' => 'Блог']);
+        return view('front.pages.articles.index', compact(['articles', 'title']));
     }
 
-    public function article($slug)
+    public function article($id, $slug)
     {
         try {
-            $article = Article::where('slug', 'post:' . $slug)
+            $article = Article::where('slug', "post$id:$slug")
                 ->firstOrFail();
         } catch (\Exception $e) {
             abort(404, trans('custom.err_article'));

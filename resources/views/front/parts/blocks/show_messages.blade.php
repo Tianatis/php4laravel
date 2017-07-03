@@ -4,10 +4,15 @@
 			<strong>{{ $message->user->name }}</strong>  &nbsp;
 			<span>({{ date('d.m.Y h:i',strtotime($message->created_at)) }})</span>:
 			@if($auth)
-				<div class="delete_mess">(<a href="/messages/delete:{{ $message->id }}">Удалить</a>)</div>
-				<div class="respond_mess">(<a href="#">Ответить</a>)</div>
+				@if($isAuthAdmin)
+					<div class="delete_mess">(<a href="/messages/delete:{{ $message->id }}">Удалить</a>)</div>
+					<div class="respond_mess">(<a href="#">Ответить</a>)</div>
+				@else
+					@if($isAdmin)
+						(<a href="{{ route('back.panel.login') }}">Войти для совершения действий</a>)
+					@endif
+				@endif
 			@endif
-			
 			<div>{{ $message->message }}</div>
 			<div class="respond_hidden_form">
 				@include('front.parts.forms.respond')

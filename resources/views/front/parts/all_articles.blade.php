@@ -36,7 +36,7 @@
 								(<a href="{{ route('blog') }}/delete:{{ $article->id }}">Удалить</a>)
 							@else
 								@if($isAdmin)
-									(<a href="{{ route('back.panel.login') }}">Авторизоваться</a>)
+									(<a href="{{ route('back.panel.login') }}">Войти для совершения действий</a>)
 								@endif
 							@endif
 						@endif
