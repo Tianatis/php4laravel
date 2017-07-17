@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SliderTableSeeder::class);
         $this->call(MessagesTableSeeder::class);
         $this->call(RespondsTableSeeder::class);
-
+        $this->call(CommentsTableSeeder::class);
+        $this->call(MenuToRolesTableSeeder::class);
     }
 }

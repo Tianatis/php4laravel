@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('backAddArticlePost') }}">
+<form method="POST" action="{{ route('frontAddArticlePost') }}">
     {{ csrf_field() }}
     <label>Заголовок</label>
     @if($errors->has('title'))
@@ -11,7 +11,7 @@
     @endif
     <textarea name="content" required>{{ old('content') or '' }}</textarea>
 
-    <input type="checkbox" name="private" @if((is_array(old('$private')) && in_array(1, old('$private')))) checked @endif; value="1">
+    <input type="checkbox" name="private" @if((is_array(old('private')) && in_array(1, old('private')))) checked @endif; value="1">
     <label>Только для зарегистрированныз пользователей</label><br><br>
     <input type="submit" id="btn_sumb" value="Сохранить статью">
 </form>

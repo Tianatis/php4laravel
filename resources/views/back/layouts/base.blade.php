@@ -1,5 +1,4 @@
-</html>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 	<head>
 		<meta charset="utf-8">
@@ -13,7 +12,7 @@
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 		<![endif]-->
 		<script language="javascript" src="{{ URL::asset('js/jquery-1.9.0.js') }}" type="text/javascript" charset="utf-8"></script>
-		<script language="javascript" src="{{ URL::asset('js/script.js') }}?{{ sha1(microtime(true)) }}" type="text/javascript" charset="utf-8"></script>
+		<script language="javascript" src="{{ URL::asset('js/admin_script.js') }}?{{ sha1(microtime(true)) }}" type="text/javascript" charset="utf-8"></script>
 		@yield('head_scripts')
 	</head>
 	<body>

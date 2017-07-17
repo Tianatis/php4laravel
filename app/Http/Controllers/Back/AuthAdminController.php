@@ -25,7 +25,7 @@ class AuthAdminController extends Controller
         $authResult = Auth::guard('admins')->attempt([
             'login' => $request->input('login'),
             'password' => $request->input('password'),
-            'id' => Auth::user()->admin_id
+            'user_id' => Auth::user()->id
         ], $remember);
 
         if ($authResult) {

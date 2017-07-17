@@ -15,6 +15,7 @@ class BaseComposer {
     public function compose(View $view)
     {
         $type = Auth::check() ? Auth::user()->isAdmin() : 0;
+
         $view->with('menu', Menu::active()
             ->userType($type)
             ->ofType((int)strpos(Request()->getPathInfo(), config('app.admin_panel_keyword')))

@@ -3,7 +3,7 @@
 <article class="post">
 		<header class="entry-header @yield('header_class')">
 			@yield('header_opts') 
-			<h1 class="entry-title">{{ $title or ''}}</h1>
+			<div class="article-title"><h1 class="entry-title">{{ $title or ''}}</h1></div>
 		</header>
 		<!-- .entry-header -->
 

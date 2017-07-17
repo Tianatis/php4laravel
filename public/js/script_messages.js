@@ -2,7 +2,7 @@
 $(document).ready( function() {
 
     $('.respond_mess').click(function () {
-        $(this).parent().children('.respond_hidden_form').slideToggle();
+        $(this).parent().parent().children('.respond_hidden_form').slideToggle();
     });
-		
+
 });

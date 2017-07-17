@@ -11,19 +11,9 @@ class MenuTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('menu')->insert([
-            'order' => '1',
-            'name' => 'panel',
-            'link' => '/PANEL',
-            'title' => 'Админка',
-            'admin_only' => 1,
-            'type' => 0,
-            'need_auth' => 1,
-            'active' => 1,
-        ]);
 
         DB::table('menu')->insert([
-            'order' => '2',
+            'order' => '1',
             'name' => 'index',
             'link' => '/',
             'title' => 'Главная',
@@ -34,7 +24,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '3',
+            'order' => '2',
             'name' => 'blog',
             'link' => '/blog',
             'title' => 'Блог',
@@ -45,7 +35,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '4',
+            'order' => '3',
             'name' => 'messages',
             'link' => '/messages',
             'title' => 'Сообщения',
@@ -56,7 +46,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '5',
+            'order' => '4',
             'name' => 'about',
             'link' => '/about',
             'title' => 'О блоге',
@@ -67,13 +57,35 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '6',
+            'order' => '5',
             'name' => 'contacts',
             'link' => '/contacts',
             'title' => 'Контакты',
             'admin_only' => 0,
             'type' => 0,
             'need_auth' => 0,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '6',
+            'name' => 'panel',
+            'link' => '/PANEL',
+            'title' => 'Админка',
+            'admin_only' => 1,
+            'type' => 0,
+            'need_auth' => 1,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '6',
+            'name' => 'add',
+            'link' => '/blog/add',
+            'title' => 'Добавить статью',
+            'admin_only' => 0,
+            'type' => 0,
+            'need_auth' => 1,
             'active' => 1,
         ]);
 
@@ -99,6 +111,8 @@ class MenuTableSeeder extends Seeder
             'active' => 1,
         ]);
 
+
+
         DB::table('menu')->insert([
             'order' => '8',
             'name' => 'registration',
@@ -109,19 +123,10 @@ class MenuTableSeeder extends Seeder
             'need_auth' => 0,
             'active' => 1,
         ]);
-        DB::table('menu')->insert([
-            'order' => '1',
-            'name' => 'home',
-            'link' => '/',
-            'title' => 'Сайт',
-            'admin_only' => 0,
-            'type' => 1,
-            'need_auth' => 0,
-            'active' => 1,
-        ]);
+
 
         DB::table('menu')->insert([
-            'order' => '2',
+            'order' => '1',
             'name' => 'index',
             'link' => '/PANEL',
             'title' => 'Обзор',
@@ -132,7 +137,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '3',
+            'order' => '2',
             'name' => 'articles',
             'link' => '/PANEL/articles',
             'title' => 'Статьи',
@@ -143,7 +148,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '4',
+            'order' => '3',
             'name' => 'administrators',
             'link' => '/PANEL/administrators',
             'title' => 'Aдмины',
@@ -154,7 +159,7 @@ class MenuTableSeeder extends Seeder
         ]);
 
         DB::table('menu')->insert([
-            'order' => '5',
+            'order' => '4',
             'name' => 'messages',
             'link' => '/PANEL/messages',
             'title' => 'Сообщения',
@@ -163,9 +168,29 @@ class MenuTableSeeder extends Seeder
             'need_auth' => 1,
             'active' => 1,
         ]);
-
+        DB::table('menu')->insert([
+            'order' => '5',
+            'name' => 'users',
+            'link' => '/PANEL/users',
+            'title' => 'Пользователи',
+            'admin_only' => 1,
+            'type' => 1,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
         DB::table('menu')->insert([
             'order' => '6',
+            'name' => 'home',
+            'link' => '/',
+            'title' => 'Сайт',
+            'admin_only' => 0,
+            'type' => 1,
+            'need_auth' => 0,
+            'active' => 1,
+        ]);
+
+        DB::table('menu')->insert([
+            'order' => '7',
             'name' => 'logout',
             'link' => '/PANEL/logout',
             'title' => 'Выход',

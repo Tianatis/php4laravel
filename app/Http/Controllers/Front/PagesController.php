@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Models\Article;
 use App\Models\Slider;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -13,6 +14,7 @@ class PagesController extends Controller
     {
         $count_articles = Article::all()->count();
         $articles = Article::orderBy('id', 'DESC')
+            ->published()
             ->paginate(5);
         $slides = Slider::all();
         $title = 'Главная';
@@ -36,7 +38,8 @@ class PagesController extends Controller
     }
     public function contactsPost(Request $request)
     {
-            $this->validate($request, [
+        $this->authorize('sendMessage', User::class);
+        $this->validate($request, [
 
                 'email' => 'required|email|min:3',
                 'name' => 'required|min:3|alpha',

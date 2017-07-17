@@ -13,7 +13,7 @@ class Respond extends Model
         return $this->belongsTo('App\Models\Message');
     }
 
-    public function Admin()
+    public function admin()
     {
         return $this->belongsTo('App\Models\Admin');
     }

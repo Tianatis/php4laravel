@@ -14,6 +14,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Models\Respond' => 'App\Policies\RespondPolicy',
+        'App\Models\Message' => 'App\Policies\MessagePolicy',
+        'App\Models\Comment' => 'App\Policies\CommentPolicy',
+        'App\Models\Article' => 'App\Policies\ArticlePolicy',
+        'App\Models\Admin' =>   'App\Policies\AdminPolicy',
+        'App\Models\User' =>    'App\Policies\UserPolicy',
     ];
 
     /**
@@ -24,27 +29,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        Gate::define('add-message', function ($user) {
-
-            return $user->is_admin == 0;
-
-        });
-        Gate::define('respond-message', function ($user) {
-            /* передан пользователь из таблицы admins */
-            return $user->role_id < 3;
-
-        });
-        /* альтернативный метод */
-        Gate::define('delete-message', function ($user) {
-            /* передан пользователь из таблицы users */
-            /* используем связанную таблцу admins */
-            return $user->admin->isAdministrator();
-
-        });
-        Gate::define('delete-respond', 'App\Policies\RespondPolicy@delete');
-
-        //
 
     }
 }

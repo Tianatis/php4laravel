@@ -12,5 +12,9 @@ class Role extends Model
     {
         return $this->hasMany('App\Models\Admin');
     }
+    public function MenuToRole()
+    {
+        return $this->hasMany('App\Models\MenuToRole');
+    }
 
 }

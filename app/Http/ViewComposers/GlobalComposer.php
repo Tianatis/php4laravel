@@ -13,10 +13,13 @@ class GlobalComposer {
      */
     public function compose(View $view)
     {
-        $view->with('auth', Auth::user());
+        $view->with('auth', Auth::check());
+        $view->with('isAuthor', Auth::check() && Auth::user()->isAuthor());
         $view->with('isAdmin', ((Auth::check() && Auth::user()->isAdmin())));
-        $view->with('isAuthAdmin', (Auth::guard('admins')->check()));
+        $view->with('isAuthAdmin', (Auth::guard('admins')->check() && Auth::user()->isAdmin()));
+        $view->with('isAdministrator', (Auth::guard('admins')->check() && Auth::guard('admins')->user()->isAdministrator()));
         $view->with('isSuperAdmin', (Auth::guard('admins')->check() && Auth::guard('admins')->user()->isSuperAdmin()));
+
     }
 
 }

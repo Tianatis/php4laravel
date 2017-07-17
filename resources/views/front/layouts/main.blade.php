@@ -7,6 +7,9 @@
 @section('header')
     @include('front.parts.header')
 @endsection
+@section('search')
+	@include('front.parts.search')
+@endsection
 
 @section('content')
 	<div class="container">

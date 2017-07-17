@@ -21,10 +21,10 @@ class CreateMenuTable extends Migration
             $table->string('name');
             $table->string('link');
             $table->string('title');
-            $table->integer('admin_only')->default(0);
+            $table->boolean('admin_only')->default(0);
             $table->integer('type')->default(0);
-            $table->integer('need_auth')->default(0);
-            $table->integer('active')->default(1);
+            $table->boolean('need_auth')->default(0);
+            $table->boolean('active')->default(1);
         });
     }
 

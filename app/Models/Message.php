@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Message extends Model
 {
     protected $guarded = ['id', 'created_at', 'updated_at'];
@@ -16,5 +16,10 @@ class Message extends Model
     public function respond()
     {
         return $this->hasMany('App\Models\Respond');
+    }
+
+    public function scopeLastAdded($query)
+    {
+        return $query->where('created_at', '>', DB::Raw('NOW() - ( 7 *24 *3600 )'));
     }
  }

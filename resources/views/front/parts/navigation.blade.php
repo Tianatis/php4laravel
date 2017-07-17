@@ -23,7 +23,13 @@
 						@else
 							@if($auth && ($item->name != 'registration' && $item->name != 'login'))
 								@if(!$item->admin_only)
-									<li><a href="{{ $item->link }}" class="{{ $item->class or '' }}">{{ $item->title }}</a></li>
+									@if($item->name == 'add')
+										@if($isAuthor)
+											<li><a href="{{ $item->link }}" class="{{ $item->class or '' }}">{{ $item->title }}</a></li>
+										@endif
+									@else
+										<li><a href="{{ $item->link }}" class="{{ $item->class or '' }}">{{ $item->title }}</a></li>
+									@endif
 								@else
 									@if($isAdmin)
 										@if($item->name == 'panel')
@@ -34,6 +40,7 @@
 											<li><a href="{{ $item->link }}" class="{{ $item->class or '' }}">{{ $item->title }}</a></li>
 										@endif
 									@endif
+
 								@endif
 							@endif
 						@endif

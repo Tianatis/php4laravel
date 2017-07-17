@@ -42,6 +42,22 @@ use Illuminate\Support\Facades\Route;
                     ->name('back.pages.administrators.delete');
             });
 
+            Route::group(['middleware' => 'isAdministrator', 'prefix' =>'users'], function () {
+                /* Пользователи */
+                Route::get('/', 'UsersController@index')
+                    ->name('back.pages.users.index');
+                Route::get('/edit:{id}', 'UsersController@edit')
+                    ->name('back.pages.users.edit');
+                Route::post('/edit:{id}', 'UsersController@editPost')
+                    ->name('back.pages.users.editPost');
+                Route::get('/delete:{id}', 'UsersController@delete')
+                    ->name('back.pages.users.delete');
+                Route::get('/autor/set:{id}', 'UsersController@setAuthor')
+                    ->name('back.pages.users.setAuthor');
+                Route::get('/autor/unset:{id}', 'UsersController@unsetAuthor')
+                    ->name('back.pages.users.unsetAuthor');
+
+            });
 
         /* Статьи */
             Route::group(['prefix' => 'articles'], function () {
@@ -58,7 +74,25 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/edit:{id}', 'ArticlesController@editPost')
                     ->name('backEditArticlePost');
                 Route::get('/delete:{id}', 'ArticlesController@delete')
-                    ->name('backDdeleteArticle');
+                    ->name('backDeleteArticle');
+                Route::post('/post/{id}/comments/add', 'ArticlesController@addCommentPost')
+                    ->name('back.pages.comments.addCommentPost');
+                Route::get('/post/comments/delete:{id}', 'ArticlesController@deleteComment')
+                    ->name('back.pages.comments.deleteComment');
+                Route::get('/unpublished', 'ArticlesController@showUnpublished')
+                    ->name('back.pages.articles.unpublished');
+                Route::get('/trashed', 'ArticlesController@showTrashed')
+                    ->name('back.pages.articles.trashed');
+                Route::get('/restore:{id}', 'ArticlesController@restore')
+                    ->name('backRestoreArticle');
+                Route::get('/publish:{id}', 'ArticlesController@publish')
+                    ->name('backPublishArticle');
+                Route::get('/unpublish:{id}', 'ArticlesController@unpublish')
+                    ->name('backUnublishArticle');
+                Route::group(['middleware' => 'isSuperAdmin'], function () {
+                    Route::get('/force:{id}', 'ArticlesController@forceDelete')
+                        ->name('backforceDeleteArticle');
+                });
             });
         });
         /* Сообщения */
@@ -121,11 +155,17 @@ use Illuminate\Support\Facades\Route;
         Route::group(['prefix' => 'blog'], function () {
             Route::get('/', 'ArticlesController@index')
                 ->name('blog');
-            Route::get('/post{id}:{slug}', 'ArticlesController@article')
+            Route::get('/post:{slug}', 'ArticlesController@article')
                 ->name('article')
                 ->where([
                     'slug' => '[А-я0-9A-z/-]+'
                 ]);
+            Route::group(['middleware' => 'auth'], function () {
+                Route::post('/post/{id}/comments/add', 'ArticlesController@addCommentPost')
+                    ->name('front.pages.comments.addCommentPost');
+                Route::get('/post/comments/delete:{id}', 'ArticlesController@deleteComment')
+                    ->name('front.pages.comments.deleteComment');
+            });
         /* Действия со статьёй требующие авторизации под админом: */
         /*
            |----------------------------------------------------------------|
@@ -141,6 +181,15 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/delete:{id}', 'ArticlesController@delete')
                     ->name('deleteArticle');
             });
+
+            Route::group(['middleware' => 'isAuthor'], function () {
+                Route::get('/add', 'ArticlesController@add')
+                    ->name('frontAddArticle');
+                Route::post('/add', 'ArticlesController@addPost')
+                    ->name('frontAddArticlePost');
+            });
+
+
 
         });
 
@@ -163,6 +212,14 @@ use Illuminate\Support\Facades\Route;
 
         });
 
+        /* Поиск */
+
+        Route::group(['prefix' => 'search'], function () {
+
+            Route::post('/blog', 'SearchController@BlogPost')
+                ->name('front.pages.search.blog');
+
+        });
 
     });
 

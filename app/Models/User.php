@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'is_author', 'password',
     ];
 
     /**
@@ -29,29 +29,21 @@ class User extends Authenticatable
 
     public function admin()
     {
-        return $this->belongsTo('App\Models\Admin');
+        return $this->hasOne('App\Models\Admin');
     }
 
     public function isAdmin()
     {
-        return  $this->is_admin == 1 ?  true : false;
+        return  isset($this->admin) ?  true : false;
 
         // this looks for an role column in your users table
     }
 
-    public function isSuperAdmin()
+    public function isAuthor()
     {
-        return  $this->admin->role_id == 1 ?  true : false;
-    }
+        return  $this->is_author == 1;
 
-    public function isAdministrator()
-    {
-        return  ($this->admin->role_id == 1 || $this->admin->role_id == 2) ?  true : false;
-    }
-
-    public function isEditor()
-    {
-        return  $this->admin->role_id == 3 ?  true : false;
+        // this looks for an role column in your users table
     }
 
     public function article()
@@ -59,7 +51,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Article');
     }
 
-
+    public function comment()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
 
     public function scopeLastUser($query)
     {

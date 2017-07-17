@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
-class IsInAdminPanel
+use Illuminate\Support\Facades\Auth;
+class IsAuthor
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,10 @@ class IsInAdminPanel
      */
     public function handle($request, Closure $next)
     {
-
-        if(strpos($request->getPathInfo(), config('app.admin_panel_keyword')))
-           return true;
-
-        return $next($request);
+        if (Auth::check() && Auth::user()->isAuthor())
+        {
+            return $next($request);
+        }
+        return redirect('/');
     }
 }

@@ -21,7 +21,8 @@
 	
 	@yield('header')
 	<!-- #masthead -->
-	
+	@yield('search')
+
 	@yield('content')
 	<!-- .container -->
 	

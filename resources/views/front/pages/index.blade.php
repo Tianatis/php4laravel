@@ -21,7 +21,7 @@
         <footer class="entry-footer">
             <div class="clear">
                 <div class="ingrid-social-share">
-                    <div class="share-links">Статей на сайте: {{ $count_articles or 0 }} </div>
+                    <div class="share-links">На сайте опубликовано {{ articles_count($count_articles) }} </div>
                 </div>
 
                 <div class="comment-link"></div>

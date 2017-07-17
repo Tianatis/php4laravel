@@ -35,3 +35,26 @@ $(document).ready( function() {
     $('#message_string').delay(2300).slideUp(1000);
 		
 });
+
+function qwick_search(inputString, token, type) {
+    $(".find_string").removeClass();
+    if (inputString.length < 3){
+        // Если ничего не найдено, то скрываем выпадающий список.
+        $("#qwick_search_result").fadeOut();
+    }
+    else{
+        $.post("/search/" + type, {_token: ""+token+"", query: ""+inputString+""}, function(data) { // Do an AJAX call
+            $('#qwick_search_result').fadeIn(); // Show the suggestions box
+            $('#list_qwick_search_result').html(data); // Fill the suggestions box
+        });
+    }
+
+    $('#new_qwick_search').blur(function(){
+        $('#qwick_search_result').fadeOut();
+    });
+
+    $('.change_pass').click(function () {
+        $('.pass_hidden_form').slideToggle();
+    });
+
+}

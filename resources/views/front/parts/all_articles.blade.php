@@ -7,14 +7,26 @@
 					@if ($article->private)
 						<div class="private-img"></div>
 					@endif
-					<h1 class="entry-title">
-						<a href="/blog/{{ $article->slug }}" rel="bookmark">{{ $article->title }}</a>
-					</h1>
+					@if($auth)
+						@if($isAuthAdmin)
+							<a class="edit-img" title="Редактировать" href="{{ route('editArticle', ['id' => $article->id]) }}"></a>&nbsp;
+							<a class="delete-img" title="Удалить" href="{{ route('deleteArticle', ['id' => $article->id]) }}"></a>
+						@else
+							@if($isAdmin)
+								<a href="{{ route('back.panel.login') }}"><div class="login-img" title="Войти для совершения действий"></div></a>
+							@endif
+						@endif
+					@endif
+						<div class="article-title">
+							<h1 class="entry-title">
+								<a href="{{ route('article', ['slug' => $article->slug])  }}" rel="bookmark">{{ $article->title }}</a>
+							</h1>
+						</div>
 				</header>
 				<!-- .entry-header -->
 
 				<div class="entry-content">
-					<a href="/blog/{{ $article->slug }}" class="intro">
+					<a href="{{ route('article', ['slug' => $article->slug])  }}" class="intro">
 						{{ $article->intro }}
 					</a>
 				</div>
@@ -30,16 +42,15 @@
 						</div>
 
 						<div class="comment-link">
-						@if($auth)
-							@if($isAuthAdmin)
-								(<a href="{{ route('blog') }}/edit:{{ $article->id }}">Редактировать</a>)&nbsp;
-								(<a href="{{ route('blog') }}/delete:{{ $article->id }}">Удалить</a>)
+
+							@if(count($article->comment)>0)
+								<a href="{{ route('article', ['slug' => $article->slug])  }}/#comments" rel="bookmark">
+									{{ comments_count(count($article->comment)) }}
+								</a>
 							@else
-								@if($isAdmin)
-									(<a href="{{ route('back.panel.login') }}">Войти для совершения действий</a>)
-								@endif
+								{{ comments_count(0) }}
 							@endif
-						@endif
+
 						</div>
 					</div>
 				</footer>
