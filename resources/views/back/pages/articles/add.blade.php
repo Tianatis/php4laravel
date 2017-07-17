@@ -1,12 +1,15 @@
 @extends('back.layouts.page_content')
 @section('page_content')
-	@parent
+@parent
+	@section('page_menu')
+		@include('back.parts.menu.articles_menu')
+	@endsection
 	@section('header_class')
 			sticky
 	@endsection
 	@section('block')
 	<div class="entry-content">
-		@include('back.parts.forms.add_article')
+		@include('front.parts.forms.add_article')
 	</div>
 	@endsection
 	@section('share')

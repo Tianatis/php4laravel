@@ -6,6 +6,11 @@
 @section('page_content')
 <div id="messages">
 @parent
+	@section('header_opts')
+		@if($isAdmin && !$isAuthAdmin)
+			<a href="{{ route('back.panel.login') }}" class="login-img" title="Войти для совершения действий"></a>
+		@endif
+	@endsection
 	@section('block')
 			@if(isset($messages))
 				<div class="entry-content">
@@ -14,7 +19,7 @@
 			@endif
 		@endsection
 		@section('share')
-			@can('add-message')
+			@can('create', App\Models\Message::class)
 					<h2 class="entry-title">Оставьте Ваше сообщение</h2>
 					<div id="message_form">
 						@include('front.parts.forms.message')
@@ -23,7 +28,7 @@
 		@endsection
 		@section('comment_link')
 			<div class="comment-link">
-					Всего сообщений: {{ (int)count($messages) }}
+					Пользователи оставили {{ messages_count(count($messages)) }}
 				</div>
 		@endsection
 </div>

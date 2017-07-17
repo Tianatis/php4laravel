@@ -18,15 +18,22 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content');
-            $table->integer('user_id')->default(1);
+            $table->integer('user_id')->unsigned()->default(1);
             $table->mediumText('intro');
             $table->string('slug',255);
             $table->string('tagline',255)->nullable();
-            $table->boolean('is_active')->default(1);
+            $table->boolean('published')->default(1);
+            $table->integer('private')->default(0);
+            $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-            $table->integer('private')->default(0);
-            $table->integer('id_user')->default(1);
+
+
+        });
+
+        Schema::table('articles', function(Blueprint $table)
+        {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
     /**

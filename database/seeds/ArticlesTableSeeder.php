@@ -17,7 +17,7 @@ class ArticlesTableSeeder extends Seeder
             DB::table('articles')->insert([
                 'title' => $title,
                 'tagline' => $faker->realText(30),
-                'slug' => 'post'.$i.':' . str_slug($title, '-'),
+                'slug' => $i . str_slug($title, '-'),
                 'content' => $faker->realText(1024),
                 'intro' => $faker->realText(300),
                 'private' => $priv,

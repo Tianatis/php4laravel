@@ -15,7 +15,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'login', 'role_id', 'password',
+        'login', 'role_id', 'user_id', 'password',
     ];
 
     /**
@@ -45,7 +45,7 @@ class Admin extends Authenticatable
 
     public function user()
     {
-        return $this->hasOne('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function role()

@@ -1,5 +1,7 @@
 @extends('back.layouts.main')
 @section('page_content')
+@yield('page_menu')
+
 <article class="post">
 		<header class="entry-header @yield('header_class')">
 			@yield('header_opts') 

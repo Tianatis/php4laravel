@@ -22,9 +22,15 @@ class Menu extends Model
         }
     }
 
+
     public function scopeOfType($query, $type)
     {
         return $query->where('type', $type);
+    }
+
+    public function role()
+    {
+        return $this->belongsToMany('App\Models\Role');
     }
 
 }
