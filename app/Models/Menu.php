@@ -28,9 +28,9 @@ class Menu extends Model
         return $query->where('type', $type);
     }
 
-    public function menutorole()
+    public function role()
     {
-        return $this->hasMany('App\Models\MenuToRole');
+        return $this->belongsToMany('App\Models\Role');
     }
 
 }

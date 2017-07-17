@@ -27,8 +27,9 @@ class UsersController extends Controller
         } catch (\Exception $e) {
             abort(404, trans('custom.err_edit'));
         }
+        $roles = Role::ofType('1')->get();
         $title = 'Редактирование: '.$user->name;
-        return view('back.pages.users.edit', compact(['user', 'title']));
+        return view('back.pages.users.edit', compact(['user', 'title', 'role']));
     }
 
 
@@ -39,6 +40,7 @@ class UsersController extends Controller
         $this->authorize('update', User::class);
 
         $this->validate($request, [
+            'role_id' => 'required',
             'name' => 'required|max:100',
             'password' => 'max:255|min:6',
             'password2' => 'same:password',
@@ -65,7 +67,7 @@ class UsersController extends Controller
         $this->authorize('update', User::class);
 
         User::where('id', $id)
-            ->update(['is_author' => 1]);
+            ->update(['role_id' => 4]);
 
         return redirect()
             ->route('back.pages.users.index')
@@ -82,7 +84,7 @@ class UsersController extends Controller
         $this->authorize('update', User::class);
 
         User::where('id', $id)
-            ->update(['is_author' => 0]);
+            ->update(['role_id' => 5]);
 
         return redirect()
             ->route('back.pages.users.index')

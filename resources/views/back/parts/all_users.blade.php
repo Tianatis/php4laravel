@@ -17,7 +17,7 @@
 						<td class="left">{{ $user->name }}</td>
 						<td class="left">{{ $user->email }}</td>
 						<td>
-							@if($user->is_author)
+							@if($user->is_author())
 								<a href="{{ route('back.pages.users.unsetAuthor', ['id' => $user->id]) }}">
 									<img src="{{ URL::asset('images/active.png') }}"  alt="Автор" title="Автор">
 								</a>

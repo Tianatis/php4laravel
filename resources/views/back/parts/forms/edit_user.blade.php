@@ -6,11 +6,19 @@
 	@endif
 	<input type="text" name="name" value="{{ old('login', $user->name) }}" required autofocus>
 
-	<br>
-	<input type="checkbox" id="is_author" name="is_author" @if((is_array(old('is_author')) && in_array(1, old('is_author')))) checked @endif; value="1">
-	<label for="is_author">Дать права Автора</label>
-	<br>
-	<br>
+	<label>Роль</label>
+	@if($errors->has('role_id'))
+		<p class="validation_error">{{ $errors->first('role_id') }}</p>
+	@endif
+	<select name="role_id">
+		@if ($errors->has('role_id'))
+			<p class="validation_error">{{ $errors->first('role_id') }}</p>
+		@endif
+		<option value="{{ old('role_id', $user->role_id) }}" selected="selected" data-skip="1">{{ old('role_id', $user->role->name) }}</option>
+		@foreach ($roles as $role)
+			<option value="{{ $role->id }}">{{ $role->name }}</option>
+		@endforeach
+	</select>
 
 	<input type="checkbox" id="change_pass" class="change_pass"/><label for="change_pass">Сменить пароль</label>
 	<div class="pass_hidden_form">

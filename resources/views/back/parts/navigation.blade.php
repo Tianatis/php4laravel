@@ -4,18 +4,22 @@
 				<ul class="menu nav-menu">
 					@if (isset($menu) && count($menu) > 0)
 						@foreach ($menu as $item)
-							<?php $item->link = str_replace('PANEL', config('app.admin_panel_keyword'),  $item->link); ?>
-								@if(Request()->getPathInfo() == $item->link)
-                                    <?php $item->class = 'active'; ?>
-								@endif
+							@foreach ($item->role as $role)
+								@if($role->id == $role_id)
+									<?php $item->link = str_replace('PANEL', config('app.admin_panel_keyword'),  $item->link); ?>
+										@if(Request()->getPathInfo() == $item->link)
+											<?php $item->class = 'active'; ?>
+										@endif
 
-							@if($item->name == 'add_admin')
-								@if($isAuthAdmin)
-									<li><a href="{{ $item->link }}" class="{{ $item->class or '' }}">{{ $item->title }}</a></li>
+									@if($item->name == 'add_admin')
+										@if($isAuthAdmin)
+											<li><a href="{{ $item->link }}" class="{{ $item->class or '' }}">{{ $item->title }}</a></li>
+										@endif
+									@else
+										<li><a href="{{ $item->link }}" class="{{ $item->class or '' }}">{{ $item->title }}</a></li>
+									@endif
 								@endif
-							@else
-								<li><a href="{{ $item->link }}" class="{{ $item->class or '' }}">{{ $item->title }}</a></li>
-							@endif
+							@endforeach
 						@endforeach
 					@endif
 				</ul>

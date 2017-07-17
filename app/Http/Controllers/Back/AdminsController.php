@@ -22,7 +22,7 @@ class AdminsController extends Controller
     public function add()
     {
         $this->authorize('view', Admin::class);
-        $roles = Role::all();
+        $roles = Role::ofType('1')->get();
         return view('back.pages.administrators.add', ['title' => 'Добавить администратора', 'roles' => $roles->sortByDesc('id')]);
     }
 
@@ -67,7 +67,7 @@ class AdminsController extends Controller
         } catch (\Exception $e) {
             abort(404, trans('custom.err_edit'));
         }
-        $roles = Role::all();
+        $roles = Role::ofType('1')->get();
         $title = 'Редактирование: '.$administrator->login;
         return view('back.pages.administrators.edit', compact(['administrator', 'title', 'roles']));
     }

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Menu;
 class PagesController extends Controller
 {
     public function index()
@@ -16,6 +17,7 @@ class PagesController extends Controller
         $articles = Article::orderBy('id', 'DESC')
             ->published()
             ->paginate(5);
+
         $slides = Slider::all();
         $title = 'Главная';
         return view('front.pages.index', compact(['articles', 'title', 'slides', 'count_articles']));

@@ -32,6 +32,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Admin');
     }
 
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
+    }
+
     public function isAdmin()
     {
         return  isset($this->admin) ?  true : false;
@@ -41,7 +46,7 @@ class User extends Authenticatable
 
     public function isAuthor()
     {
-        return  $this->is_author == 1;
+        return  $this->role_id == 4;
 
         // this looks for an role column in your users table
     }

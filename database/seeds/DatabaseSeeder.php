@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MessagesTableSeeder::class);
         $this->call(RespondsTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
-        $this->call(MenuToRolesTableSeeder::class);
+        $this->call(MenuRolesTableSeeder::class);
     }
 }
