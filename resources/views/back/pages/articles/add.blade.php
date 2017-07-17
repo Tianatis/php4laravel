@@ -9,7 +9,7 @@
 	@endsection
 	@section('block')
 	<div class="entry-content">
-		@include('front.parts.forms.add_article')
+		@include('back.parts.forms.add_article')
 	</div>
 	@endsection
 	@section('share')

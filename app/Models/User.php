@@ -41,14 +41,13 @@ class User extends Authenticatable
     {
         return  isset($this->admin) ?  true : false;
 
-        // this looks for an role column in your users table
     }
 
     public function isAuthor()
     {
+
         return  $this->role_id == 4;
 
-        // this looks for an role column in your users table
     }
 
     public function article()
