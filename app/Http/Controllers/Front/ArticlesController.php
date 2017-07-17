@@ -72,7 +72,7 @@ class ArticlesController extends Controller
 
     public function edit($id)
     {
-        $this->authorize('edit', Article::class);
+        $this->authorize('update', Article::class);
         try {
             $article = Article::where('id', $id)
                 ->published()
@@ -86,7 +86,7 @@ class ArticlesController extends Controller
 
     public function editPost($id, Request $request)
     {
-        $this->authorize('edit', Article::class);
+        $this->authorize('update', Article::class);
         $this->validate($request, [
             'title' => 'required|max:255',
             'content' => 'required|min:5',
